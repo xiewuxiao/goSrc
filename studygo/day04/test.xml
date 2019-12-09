@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="首页" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite name="搜索" >
+<node_order><![CDATA[0]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1457115" name="搜索页面检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243149]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	在首页点搜索框</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入到搜索页面：</p>
+<p>
+	（1）进入搜索页面后，自动调起键盘，光标显示在搜索框中</p>
+<p>
+	（2）页面左上角显示返回按钮</p>
+<p>
+	（3）搜索框下方显示热门搜索和搜索历史记录(如有)</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	续步骤1，点热门搜索中的选项</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入搜索结果页面：</p>
+<p>
+	（1）顶部展示返回按钮、搜索关键字、清除按钮</p>
+<p>
+	（2）按匹配结果的顺序展示搜索结果</p>
+<p>
+	（3）每条搜索结果显示专辑封面、歌曲名、歌手名、下载状态和歌曲大小</p>
+<p>
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;每条搜索结果右侧显示下载按钮(已下载不展示)、点唱按钮</p>
+<p>
+	（4）搜索匹配了歌手时，歌手会显示在搜索结果第一位</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	续步骤1，输入关键字</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	输入关键字后，搜索栏下方展示搜索提示框，包括已输入的关键字和匹配的歌手和歌曲</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	续步骤3，点击搜索按钮或匹配的歌手/歌曲，或点键盘的确认按钮</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入搜索结果页面，搜索结果按照匹配顺序展示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1457121" name="歌手详情页">
+	<node_order><![CDATA[1]]></node_order>
+	<externalid><![CDATA[2243150]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[<p>
+	曲库中有歌手A</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入歌手名称A进行搜索</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	优先展示歌手名入口，搜索结果显示显示歌手名下所有作品</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击歌手入口</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#000000;">进入歌手详情页：</span></p>
+<p>
+	<span style="color:#000000;">（1）返回按钮、歌手名</span></p>
+<p>
+	<span style="color:#000000;">（2）歌手的歌曲详情按照伴奏的点唱量高低进行排序</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	选择音乐进行下载或点唱</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	点下载，伴奏能下载成功；点点唱按钮能正常进入录制页</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1457126" name="搜索结果匹配规则检查">
+	<node_order><![CDATA[2]]></node_order>
+	<externalid><![CDATA[2243151]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[<p>
+	曲库中有伴奏A</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入完整的歌手名进行搜索</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	搜索结果显示歌手+歌手名下所有作品</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入完整的伴奏名进行搜索</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	搜索结果展示完整匹配的伴奏搜索结果</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入关键字</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	输入时在搜索框下方展示可能的搜索结果：</p>
+<p>
+	（1）前两位展示歌手结果，其他位置展示歌曲结果</p>
+<p>
+	（2）展示的匹配结果按照匹配度排序，优先展示匹配度高的歌手或歌曲，匹配度相同时按点唱量排序</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入不完整或有错误字符的关键字并搜索</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	（1）搜索结果模糊匹配，搜索结果按照匹配度和高低进行排序，匹配度相同的情况下，按照点唱量进行排序</p>
+<p>
+	（2）无搜索结果时，页面有默认文案提示（需翻译）和反馈入口展示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1457251" name="伴奏反馈">
+	<node_order><![CDATA[3]]></node_order>
+	<externalid><![CDATA[2243172]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[<p>
+	曲库中没有伴奏A</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	点击搜索框，输入A，未搜索到结果</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	界面根据语种提示&ldquo;很抱歉，未找到结果&ldquo;</p>
+<p>
+	页面有&quot;去反馈&gt;&quot;按钮</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击&ldquo;去反馈&gt;&rdquo;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入伴奏反馈页，页面显示：</p>
+<p>
+	（1）返回按钮、Feedback</p>
+<p>
+	（2）歌曲名输入栏（必填）、歌手名输入栏；输入栏显示默认文案</p>
+<p>
+	（3）提交按钮（未填写时默认置灰）</p>
+<p>
+	（4）&quot;我有这首歌&quot;按钮</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	填写歌曲名，填写歌手名后提交</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	提交成功，并显示toast提醒：&ldquo;我们找到伴奏，会及时通知你&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1458654" name="伴奏上传">
+	<node_order><![CDATA[4]]></node_order>
+	<externalid><![CDATA[2243181]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	未搜索到伴奏时，进入伴奏反馈页</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示歌曲名、歌手名填写框，提交按钮以及跳转链接&ldquo;我有这首歌&gt;&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击底部&ldquo;我有这首歌&gt;&rdquo;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	跳转至上传管理页面，页面显示上传网址，PC端输入网址可正常打开上传管理页面</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1481632" name="搜索历史记录">
+	<node_order><![CDATA[5]]></node_order>
+	<externalid><![CDATA[2243186]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	首页点搜索框</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	（1）进入搜索页面，页面显示热门搜索和搜索历史记录(如有)</p>
+<p>
+	（2）历史记录为空时不展示；有搜索历史记录时倒序展示，最多展示20条</p>
+<p>
+	（3）每条搜索记录后有删除按钮，总搜索记录上有清空按钮</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点任意一条搜索记录</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入搜索结果页面，搜索结果正常显示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	增加一条搜索记录(输入关键字搜索后首页点搜索框)</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	搜索历史记录增加最新的搜索关键字，搜索记录倒序显示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	删除任意一条搜索记录</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可正常删除搜索记录，删除后其他的搜索记录倒序显示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	清空搜索记录</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	搜索记录被清空，搜索页面不展示历史搜索关键字</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785391" name="搜索联想框-点击框外区域关闭">
+	<node_order><![CDATA[6]]></node_order>
+	<externalid><![CDATA[2243502]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入应用，在顶部的搜索框中输入：李</p>]]></actions>
+	<expectedresults><![CDATA[<p>浮现联想结果下拉框</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击联想结果下拉框外空白区域</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭联想结果下拉框</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785395" name="联想搜索框-新增滑动块显示">
+	<node_order><![CDATA[7]]></node_order>
+	<externalid><![CDATA[2243503]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入应用，在顶部的搜索框中输入：李</p>]]></actions>
+	<expectedresults><![CDATA[<p>浮现联想结果下拉框（数据足够多，支持上下滑动查看数据）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>上下滑动联想结果下拉框</p>]]></actions>
+	<expectedresults><![CDATA[<p>展示了滑动滚动条</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="Banner管理" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1542759" name="后台新增banner">
+	<node_order><![CDATA[1]]></node_order>
+	<externalid><![CDATA[2243230]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击【新增】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出新增banner页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>在banner名称处输入</p>]]></actions>
+	<expectedresults><![CDATA[<p>输入后正常显示在页面中</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击开始时间/结束时间</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出时间选择控件，选择时间后正常回显</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>点击在“权重”处输入数字</p>]]></actions>
+	<expectedresults><![CDATA[<p>输入后正常显示在页面中</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>在跳转类型处选择任意类型</p>]]></actions>
+	<expectedresults><![CDATA[<p>用户所选选项的展示为选中状态</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>在跳转链接处输入链接</p>]]></actions>
+	<expectedresults><![CDATA[<p>输入后正常显示在页面中</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p>在上传图片处点击上传印尼语图片和英文图片</p>]]></actions>
+	<expectedresults><![CDATA[<p>上传成功正常显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p>点击【确定】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功新增的banner</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[9]]></step_number>
+	<actions><![CDATA[<p>点击【取消】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭弹窗，保存不成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542770" name="后台编辑banner">
+	<node_order><![CDATA[2]]></node_order>
+	<externalid><![CDATA[2243231]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击任意已新增的banner信息中【编辑】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入编辑页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>分别对页面所有字段进行编辑修改</p>]]></actions>
+	<expectedresults><![CDATA[<p>编辑后正常显示为修改后信息</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>编辑后，点击【确定】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功保存信息，列表显示的内容同步更新</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>再次点击【编辑】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入编辑页面，显示为修改后内容</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542776" name="后台删除banner">
+	<node_order><![CDATA[3]]></node_order>
+	<externalid><![CDATA[2243232]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击列表中有效的正在展示在客户端的banner【删除】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>删除成功，页面不显示该记录</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>不显示已删除的banner</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542780" name="客户端banner跳转链接：weburl">
+	<node_order><![CDATA[4]]></node_order>
+	<externalid><![CDATA[2243233]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>后台已配置有效的跳转到weburl的banner1</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>正常显示banner1</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击banner1图片</p>]]></actions>
+	<expectedresults><![CDATA[<p>使用内嵌浏览器跳转到对应页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542784" name="客户端banner跳转链接：伴奏ID">
+	<node_order><![CDATA[5]]></node_order>
+	<externalid><![CDATA[2243234]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>后台已配置有效的跳转到伴奏ID的banner2</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>正常显示banner2</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击banner2图片</p>]]></actions>
+	<expectedresults><![CDATA[<p>则跳转到对应伴奏的伴奏加载页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542788" name="客户端banner跳转链接：歌单ID">
+	<node_order><![CDATA[6]]></node_order>
+	<externalid><![CDATA[2243235]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>后台已配置有效的跳转到歌单ID的banner3</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>正常显示banner3</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击banner3图片</p>]]></actions>
+	<expectedresults><![CDATA[<p>则跳转到对应的歌单详情页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542792" name="客户端banner跳转链接：其他命令">
+	<node_order><![CDATA[7]]></node_order>
+	<externalid><![CDATA[2243236]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div style="white-space: pre-wrap; line-height: 1.75; font-size: 14px;" yne-bulb-block="paragraph">
+	其他命令 singomobile://Search/SearchActivity?key=1&amp;type=id</div>
+<p>
+	<!--5f39ae17-8c62-4a45-bc43-b32064c9388a:W3siYmxvY2tJZCI6IjAwMzMtMTU0MDQzNDg3ODM1NSIsImJsb2NrVHlwZSI6InBhcmFncmFwaCIsInN0eWxlcyI6eyJhbGlnbiI6ImxlZnQiLCJpbmRlbnQiOjAsInRleHQtaW5kZW50IjowLCJsaW5lLWhlaWdodCI6MS43NSwiYmFjay1jb2xvciI6IiIsInBhZGRpbmciOiIifSwidHlwZSI6InBhcmFncmFwaCIsInJpY2hUZXh0Ijp7ImRhdGEiOlt7ImNoYXIiOiLlhbYifSx7ImNoYXIiOiLku5YifSx7ImNoYXIiOiLlkb0ifSx7ImNoYXIiOiLku6QifSx7ImNoYXIiOiIgIn0seyJjaGFyIjoicyJ9LHsiY2hhciI6ImkifSx7ImNoYXIiOiJuIn0seyJjaGFyIjoiZyJ9LHsiY2hhciI6Im8ifSx7ImNoYXIiOiJtIn0seyJjaGFyIjoibyJ9LHsiY2hhciI6ImIifSx7ImNoYXIiOiJpIn0seyJjaGFyIjoibCJ9LHsiY2hhciI6ImUifSx7ImNoYXIiOiI6In0seyJjaGFyIjoiLyJ9LHsiY2hhciI6Ii8ifSx7ImNoYXIiOiJTIn0seyJjaGFyIjoiZSJ9LHsiY2hhciI6ImEifSx7ImNoYXIiOiJyIn0seyJjaGFyIjoiYyJ9LHsiY2hhciI6ImgifSx7ImNoYXIiOiIvIn0seyJjaGFyIjoiUyJ9LHsiY2hhciI6ImUifSx7ImNoYXIiOiJhIn0seyJjaGFyIjoiciJ9LHsiY2hhciI6ImMifSx7ImNoYXIiOiJoIn0seyJjaGFyIjoiQSJ9LHsiY2hhciI6ImMifSx7ImNoYXIiOiJ0In0seyJjaGFyIjoiaSJ9LHsiY2hhciI6InYifSx7ImNoYXIiOiJpIn0seyJjaGFyIjoidCJ9LHsiY2hhciI6InkifSx7ImNoYXIiOiI/In0seyJjaGFyIjoiayJ9LHsiY2hhciI6ImUifSx7ImNoYXIiOiJ5In0seyJjaGFyIjoiPSJ9LHsiY2hhciI6IjEifSx7ImNoYXIiOiImIn0seyJjaGFyIjoidCJ9LHsiY2hhciI6InkifSx7ImNoYXIiOiJwIn0seyJjaGFyIjoiZSJ9LHsiY2hhciI6Ij0ifSx7ImNoYXIiOiJpIn0seyJjaGFyIjoiZCJ9XSwiaXNSaWNoVGV4dCI6dHJ1ZSwia2VlcExpbmVCcmVhayI6dHJ1ZX19LHsiYmxvY2tJZCI6IjE4NzAtMTU0MDQzNDk2MDM5MCIsImJsb2NrVHlwZSI6InBhcmFncmFwaCIsInN0eWxlcyI6eyJhbGlnbiI6ImxlZnQiLCJpbmRlbnQiOjAsInRleHQtaW5kZW50IjowLCJsaW5lLWhlaWdodCI6MS43NSwiYmFjay1jb2xvciI6IiIsInBhZGRpbmciOiIifSwidHlwZSI6InBhcmFncmFwaCIsInJpY2hUZXh0Ijp7ImRhdGEiOlt7ImNoYXIiOiLlhbYifSx7ImNoYXIiOiLku5YifSx7ImNoYXIiOiLlkb0ifSx7ImNoYXIiOiLku6QifSx7ImNoYXIiOiIgIn0seyJjaGFyIjoiayJ9LHsiY2hhciI6ImUifSx7ImNoYXIiOiJ5In0seyJjaGFyIjoiPSJ9LHsiY2hhciI6IjEifSx7ImNoYXIiOiIgIn0seyJjaGFyIjoi6L+ZIn0seyJjaGFyIjoi5LiqIn0seyJjaGFyIjoiMSJ9LHsiY2hhciI6IuaYryJ9LHsiY2hhciI6IuS8tCJ9LHsiY2hhciI6IuWljyJ9LHsiY2hhciI6ImkifSx7ImNoYXIiOiJkIn0seyJjaGFyIjoiICJ9LHsiY2hhciI6IuWPryJ9LHsiY2hhciI6IuS7pSJ9LHsiY2hhciI6IuaNoiJ9LHsiY2hhciI6IuaIkCJ9LHsiY2hhciI6IuWFtiJ9LHsiY2hhciI6IuS7liJ9LHsiY2hhciI6IuS7uyJ9LHsiY2hhciI6IuS9lSJ9LHsiY2hhciI6IuS4iiJ9LHsiY2hhciI6IuaetiJ9LHsiY2hhciI6IuS6hiJ9LHsiY2hhciI6IueahCJ9XSwiaXNSaWNoVGV4dCI6dHJ1ZSwia2VlcExpbmVCcmVhayI6dHJ1ZX19XQ==--></p>
+<div style="white-space: pre-wrap; line-height: 1.75; font-size: 14px;" yne-bulb-block="paragraph">
+	其他命令 key=1 这个1是伴奏id 可以换成其他任何上架了的</div>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	后台已配置有效的跳转到歌单ID的banner4</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>正常显示banner4</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击banner4图片</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到对应的页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542796" name="banner显示-有效期">
+	<node_order><![CDATA[8]]></node_order>
+	<externalid><![CDATA[2243237]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>后台配置banner<br>1，当前日期小于该banner开始时间，查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>不显示banner1</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>后台配置banner<br>2，当前日期大于该banner开始时间，查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>不显示banner2</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>后台配置banner<br>3，当前日期在开始时间及结束时间之间，查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示banner3</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1542801" name="banner轮播">
+	<node_order><![CDATA[9]]></node_order>
+	<externalid><![CDATA[2243238]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>当前有效的banner图数量大于1</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>查看客户端首页</p>]]></actions>
+	<expectedresults><![CDATA[<p>轮播展示banner图，5s轮播一次</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>手动左右滑动</p>]]></actions>
+	<expectedresults><![CDATA[<p>可左右滑动切换循环显示banner</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="热门tab/已点tab" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1503342" name="新手引导">
+	<node_order><![CDATA[5]]></node_order>
+	<externalid><![CDATA[2243199]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	首次安装app，进入首页热门列表中</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	（1）进入首页有引导下载的提示语和引导手势</p>
+<p>
+	（2）头像上显示查看我的歌曲引导和手势</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击首页歌曲下载按钮，进入Recent tab中查看</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab中有查看已下载和已唱歌曲的引导</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="color:#d3d3d3;">进入热门tab/已点tab/搜索页面，选择伴奏首次进行录制</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#d3d3d3;">显示伴奏拖动引导：&quot;上下拖动可快进或后退&quot;+手势</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤1、2， 点击屏幕空白区域</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以跳过当前引导，再次进入相同界面无引导显示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450539" name="app启动首页">
+	<node_order><![CDATA[6]]></node_order>
+	<externalid><![CDATA[2243067]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	首次启动app</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示默认启动图</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	首页闪屏加载3s后消失（如有）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	自动进入singo hot歌单列表</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤1,未加载3S,点击skip</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	自动进入singo hot歌单列表</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450543" name="首页UI检查">
+	<node_order><![CDATA[7]]></node_order>
+	<externalid><![CDATA[2243068]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入app后</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1.左上角显示个人中心入口<br />
+	2.个人中心入口旁显示搜索框<br />
+	3.搜索框下面显示热门tab、歌手tab、已点tab</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	点击个人中心入口</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	展开侧边栏</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	热门tab列表</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.列表中显示后台上传的音乐和用户上传审核通过的音乐<br />
+	2.显示状态歌曲基本信息：专辑封面、歌曲名（歌曲名长度超出展示区域时使用省略号填充）、歌手名、歌曲文件大小、歌曲标签（音质、PK）<br />
+	3.显示歌曲操作入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	切换到已点tab</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.列表顶部显示当前手机容量/总容量与编辑按钮;<br />
+	2.列表内容显示点击过下载与已点唱的歌曲;<br />
+	3.显示状态歌曲基本信息：专辑封面、歌曲名（歌曲名长度超出展示区域时使用省略号填充）、歌手名、歌曲文件大小、歌曲标签（音质、PK）<br />
+	4.显示歌曲操作入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450549" name="音频下载时icon显示">
+	<node_order><![CDATA[8]]></node_order>
+	<externalid><![CDATA[2243069]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门tab,选择音频点击下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab页上显示下载Icon</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击或向左滑动tab切换至已点tab页</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab页上Icon消失</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	2，点击或向右滑动tab切换回热门tab页</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab上不显示下载icon</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤1,音频下载完成</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab页上Icon消失</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	进入已点tab,选择有下载入口的音频点击下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab页上不显示Icon</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450556" name="音频下载">
+	<node_order><![CDATA[9]]></node_order>
+	<externalid><![CDATA[2243070]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>热门与已点tab都需检查</p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门tab,选择一首音频点击下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	下载音频在Recent tab页中显示，状态为下载中，显示下载进度(具体体现效果见UI)</p>
+<p>
+	热门tab中显示下载进度(xxMB/yyMB)，下载按钮消失</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	进入Recent tab，选择一首音频点击下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示下载进度,下载状态</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门/Recent tab,选择依次点击多首音频进行下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	只有一首音频显示下载中，其余音频显示等待中(具体体现效果见UI)</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	Recent tab中音频下载时点击暂停</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	Recent tab中状态为暂停，下载进度暂停</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	音频下载完成</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	热门/Recent tab中状态为下载完成，显示下载完成标志，音频只显示点唱入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450562" name="音频下载时暂停">
+	<node_order><![CDATA[10]]></node_order>
+	<externalid><![CDATA[2243071]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>热门与已点tab都需检查</p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门tab页,选择音频点击下载后，进入已点tab页点击暂停</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	下载按钮变为暂停状态，暂停按钮上显示暂停时的进度，音频暂停下载，音频进度暂停</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	进入已点tab页选择音频下载，点击下载后点击暂停</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	下载按钮变为暂停状态，暂停按钮上显示暂停时的进度，音频暂停下载，音频进度暂停</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1、 2，暂停后恢复下载</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	下载按钮变为下载中状态，音频续前面下载内容继续下载</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450566" name="音频点唱">
+	<node_order><![CDATA[11]]></node_order>
+	<externalid><![CDATA[2243072]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>热门与已点tab都需检查</p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门tab页，选择未下载未点唱的音频点击点唱</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入音频播放页</p>
+<p>
+	已点tab中显示这首点唱歌曲</p>
+<p>
+	状态显示未下载</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门tab选择已下载/未下载/已点唱/未点唱的音频点击点唱</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以进入音频播放页</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	进入已点tab页，选择已下载/已点唱的音频点击点唱</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以进入音频播放页</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	进入热门/已点tab页，切换不同音频进行点唱</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以进入到对应音频的播放页</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1450571" name="删除音频">
+	<node_order><![CDATA[12]]></node_order>
+	<externalid><![CDATA[2243073]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入已点tab中长按任一音频或点击编辑按钮</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	进入编辑界面，长按的音频为选中状态</p>
+<p>
+	左上角显示&lt;返回键，右上角显示ALL字样</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	不选择数据，点击删除</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	delete按钮隐藏，无法点击</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	选择1条数据</p>
+<p>
+	点击删除</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	删除按钮中提示删除的歌曲文件大小</p>
+<p>
+	弹出删除确定弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	选择多条数据</p>
+<p>
+	点击删除</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	删除按钮中提示删除的歌曲文件大小</p>
+<p>
+	弹出删除确定弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	点击ALL选择全部数据</p>
+<p>
+	点击删除</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	删除按钮中提示删除的歌曲文件大小</p>
+<p>
+	弹出删除确定弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤3，4，5点击取消</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	取消删除，已选中的音频为选中状态,删除按钮中提示删除的歌曲文件大小</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤3，4，5点击确定</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	删除成功，下载文件被删除，释放对应的内存，tab中对应音频恢复下载入口</p>
+<p>
+	删除全部数据后提示&ldquo;暂无已点歌曲下载和点唱的歌曲将会在这里显示&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1481716" name="在线试听音乐">
+	<node_order><![CDATA[13]]></node_order>
+	<externalid><![CDATA[2243187]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入首页-热门tab/首页-已点tab/搜索结果页面，点音乐A的专辑封面</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	（1）页面显示缓冲状态，显示缓冲进度，缓冲结束后能正常播放音频，封面显示播放状态和播放进度</p>
+<p>
+	（2）音乐有原唱时播放原唱，没原唱则播放伴奏</p>
+<p>
+	（3）页面底部显示试听进度条，通知栏显示当前正在播放的音乐和播放状态</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	续步骤1，播放中点封面、进度条、通知栏的暂停按钮</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	播放暂停，封面、进度条、通知栏显示播放暂停状态</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	续步骤2，点音乐B的封面</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	音乐B显示缓冲状态，缓冲结束后能正常播放B的音频，音乐A不显示播放或暂停的状态</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="歌手tab" >
+<node_order><![CDATA[3]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1785477" name="歌手分类入口-搜索">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243514]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	http://ipublesstest.yy.com/config-mgr?bssid=1033&amp;token=&amp;appid=1001</p>
+<p>
+	singer_language_category&nbsp; 配置分类</p>
+<p>
+	enable_home_singer_tab 配置是否展示</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>搜索页面点击搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入搜索页面：
+<br>1、热词搜索上方有【歌手】入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击【歌手】</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面跳转到对应歌手分类页：
+<br>1、左上角叫有返回按钮
+<br>2、顶部歌手分类选项，默认选中all：分为语种和性别（男歌手、女歌手、组合）两行
+<br>3、分类下方先展示该分类下热门歌手列表（展示TOP10）
+<br>4、热门歌曲列表下方展示该分类下歌曲列表：日韩文转成罗马音进行排序，中文按照拼音首字母进行排序</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785481" name="歌手分类入口-首页">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243515]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	后台统一配置中心配置控制歌手tab为开启状态</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	首页第二个展示【歌手tab】</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击【歌手】tab</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面选中歌手分类页：
+<br>1、顶部歌手分类选项，默认选中all：分为语种和性别（男歌手、女歌手、组合）两行
+<br>2、分类下方先展示该分类下热门歌手列表（展示TOP10）
+<br>3、热门歌曲列表下方展示该分类下歌曲列表：日韩文转成罗马音进行排序，中文按照拼音首字母进行排序</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785485" name="歌手分类页">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243516]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入歌手分类页，点击不同分类</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1、对应分类下展示对应分类的歌手【优先后台配置，其次点唱量】
+<br>2、热门歌手下方，按照该分类的姓名字母顺序进行排序，首字母相同的歌手，按照作品总点唱量排序；</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>上下滑动歌手列表右侧字母栏</p>]]></actions>
+	<expectedresults><![CDATA[<p>手动滑动的字母出现在字母栏顶部（悬浮放大的气泡字母），同时页面刷新为对应字母下歌手列表。</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击某歌手</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面跳转至对应歌手歌曲列表</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="歌单" >
+<node_order><![CDATA[4]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite name="前台" >
+<node_order><![CDATA[0]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1785492" name="歌单展示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243517]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>后台配置歌单到banner位置，app端点击banner</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面跳转到对应歌单详情页：
+<br>1、顶部展示标题
+<br>2、展示头图
+<br>3、展示描述
+<br>4、展示伴奏列表：伴奏ID的顺序（歌单内填写的顺序）展示伴奏列表，展示封面、歌名、歌手名、文件大小、歌曲属性标识（不需要支持下载和试听）、点唱按钮
+<br>5、右上角有分享按钮</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击点唱按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面跳转到对应伴奏加载页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785496" name="歌单录制返回">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243518]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入歌单列表页，点击某伴奏点唱按钮去伴奏加载页，不做录制操作，点击左上角x按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面回到歌单详情页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击某伴奏点唱按钮去伴奏加载页，做了录制操作进入调音页面，点击左上角x按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>页面回到歌单详情页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击某伴奏点唱按钮去伴奏加载页，录制作品保存本地</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入我的作品页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>接<br>3，点击左上角x按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>直接返回首页，不会再退到歌单详情页;</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785502" name="歌单详情-分享">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243519]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入歌单详情页，点击右上角分享按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出分享渠道：
+<br>1、分享渠道包含FB、WhatsApp、line、复制链接、系统分享</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>分享FB</p>]]></actions>
+	<expectedresults><![CDATA[<p>唤起FB成功分享，分享形式为文案+链接，文案待定，分享内容正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>分享WhatsApp</p>]]></actions>
+	<expectedresults><![CDATA[<p>唤起WhatsApp成功分享，分享形式为文案+链接，文案待定，分享内容正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>分享line</p>]]></actions>
+	<expectedresults><![CDATA[<p>唤起line成功分享，分享形式为文案+链接，文案待定，分享内容正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>复制链接</p>]]></actions>
+	<expectedresults><![CDATA[<p>可成功复制，链接内容正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="后台" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="1785510" name="添加新歌单">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243520]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击添加新歌单入口</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入添加新歌单页面：
+<br>1、歌单名称编辑区
+<br>2、歌单类型选择入口
+<br>3、歌单标题：
+<br>4、描述英文和印尼文编辑区
+<br>5、英文和印尼地区头图添加入口
+<br>6、伴奏ID添加编辑区</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>输入歌单名称、选择歌单类型、伴奏ID等信息后点击确定</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功创建新歌单,查看歌单列表：
+<br>1、分别展示：歌单ID、歌单名称、歌单类型、描述、头图、伴奏数量、创建时间、创建人（dw账号）、最后操作人（dw账号）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785514" name="编辑歌单">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243521]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>歌单列表选择某歌单，点击【编辑】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入歌单编辑页</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>编辑歌单内容后保存，查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>可成功保存编辑数据</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785518" name="歌单ID-搜索">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243522]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>输入正确歌单ID搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>正确搜索出对应歌单ID数据</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>输入错误歌单ID搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>搜索列表为空</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785522" name="歌单名称-搜索">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243523]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>输入正确的歌单名称搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>正确搜索出对应的歌单列表</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>输入不存在的歌单名称搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>搜索列表为空</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785526" name="歌单类型-搜索">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243524]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>选择不同的歌单类型进行搜索</p>]]></actions>
+	<expectedresults><![CDATA[<p>列表中对应展示对应类型的歌单数据</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785529" name="歌单创建时间-搜索">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243525]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>选择一个创建时间，点击搜索按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1、有数据：展示对应时间内创建的所有歌单列表
+<br>2、无数据：展示搜索内容为空</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1785532" name="查看歌单详情">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2243526]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>歌单列表选择某歌单，点击【查看】按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>进入查看歌单详情页：
+<br>1、按照伴奏ID的填写顺序，展示伴奏ID的详情（包含歌曲名、歌手名、语种、级别、完备度）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击歌曲名</p>]]></actions>
+	<expectedresults><![CDATA[<p>播放点击歌曲</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite></testsuite></testsuite>
