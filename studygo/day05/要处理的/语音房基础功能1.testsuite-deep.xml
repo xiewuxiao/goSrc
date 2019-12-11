@@ -1,0 +1,2371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="语音房基础功能" >
+<node_order><![CDATA[7]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="2208672" name="语音房-房间名称">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246300]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击左上角房间名称</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	直接跳转房间名称编辑弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	删除房间名称点击保存</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	android置灰不可点击</p>
+<p>
+	<span style="color:#d3d3d3;">或者</span><span style="color:#000000;">ios点击后toast提示</span><span style="color:#d3d3d3;">不可操作</span><span style="color:#000000;">修改失败</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>修改为含有中英文、数字、特殊字符、表情等</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常保存，房间内用户查看到为最新的房间名称</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	修改房间名称为20个字（限制最大字数）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.修改为20个字可以正常保存并显示<br />
+	2.限制无法输入超过20个字</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>管理员和普通观众点击房间名称</p>]]></actions>
+	<expectedresults><![CDATA[<p>点击无交互</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208679" name="语音房-房间id">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246301]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主/管理员/普通用户首次进入同一语音房，查看并点击房间id</p>]]></actions>
+	<expectedresults><![CDATA[<p>房间id是唯一标识码，点击无交互不可修改</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>1，退出语音房再次进入查看房间id</p>]]></actions>
+	<expectedresults><![CDATA[<p>房间id不变</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>1，更换设备登录同一账号，进入语音房查看房间id</p>]]></actions>
+	<expectedresults><![CDATA[<p>房间id不变</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208684" name="语音房-在线人数">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246302]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>语音房内有房主A和其他用户B，此时有用户进入语音房</p>]]></actions>
+	<expectedresults><![CDATA[<p>在线人数实时变化，人数+1（注意同时查看主界面和在线列表的在线人数）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>语音房内有房主A和其他用户B，此时有用户退出语音房</p>]]></actions>
+	<expectedresults><![CDATA[<p>在线人数实时变化，人数-1（注意同时查看主界面和在线列表的在线人数）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>未登录用户进入语音房/退出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.在线人数不会变化
+<br>2.在线列表无法显示游客</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	用户kill应用退出语音房</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	不会实时变化（心跳时间测试环境大概1分半），超出心跳时间人数-1（注意同时查看主界面和在线列表的在线人数）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208690" name="语音房-在线人数格式">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246303]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	由客户端开发自行保证，人数是信令过来的，不经过服务端，改不了数据</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>语音房人数1000人以下</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示具体数字（注意同时查看主界面和在线列表的在线人数）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>语音房内人数大于等于1000人</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示数字999+（注意同时查看主界面和在线列表的在线人数）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击在线人数查看在线列表</p>]]></actions>
+	<expectedresults><![CDATA[<p>静态拉取100个，以拉取时数据为准，超出当前屏幕，往上滑动可以显示更多</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208695" name="举报-覆盖不同身份和类型">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246304]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击更多按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>没有举报入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>管理员点击更多按钮-选择举报房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>选择任意一项举报项目提交后可举报成功并有toast提示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击更多按钮-选择举报房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>选择任意一项举报项目提交后可举报成功并有toast提示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>麦下观众点击更多按钮-选择举报房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>选择任意一项举报项目提交后可举报成功并有toast提示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	分别选择广告、色情、抢麦捣乱、声音违规、未成年直播、违法、其他</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	均可举报成功并有toast提示</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208702" name="语音房-设置被取消用户为管理">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246305]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户被取消管理身份，房主再次点击该用户设置成管理</p>]]></actions>
+	<expectedresults><![CDATA[<p>可设置成功，进入管理员列表显示该用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208705" name="管理列表-排序">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246306]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[<p>
+	语音房内有房主、管理员A（在线）、管理员B（未登录）、观众用户C</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击右上角&hellip;按钮，选择管理列表</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	管理列表排序：管理员A&gt;管理员B,管理员A带有在线标识，不显示观众</p>
+<p>
+	<span style="color:#ff0000;">备注：排序跟在线与不在线没有关系，按照昵称字母顺序排序，且没有在线标识</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>用户B登录上线，房主重进管理列表查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>管理列表排序：管理员AB排序以服务器实现为准，均带有在线标识</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>房主添加观众C为管理</p>]]></actions>
+	<expectedresults><![CDATA[<p>达到管理上限，不允许添加</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	撤销管理A后设置C为管理，查看管理列表</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	管理列表排序：管理员BC排序以服务器实现为准<span style="color:#ffffff;">，均带有在线标识</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208711" name="管理列表-后台修改管理上限">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246307]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	后台将管理员上限设置为<br />
+	3，房主添加三个管理</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以添加成功，管理员列表正常显示3个管理员的信息</p>
+<p>
+	备注：sdk设置上限为9个</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	再次添加一个管理</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	达到管理上限，不允许添加，提示设置失败</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208715" name="房主状态-麦克风状态">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246308]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>语音房内有房主和普通用户A</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主说话，10秒后暂停，房主及用户A查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>说话期间房主头像显示说话的光圈动效，停止说话后光圈动效不显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>房主关闭麦克风，10秒后开启麦克风，房主及用户A查看</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.关麦后房主显示关麦状态图标
+<br>2.重新开启麦克风后，房主恢复上麦状态</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	房主离开当前语音房，10秒后重进语音房，用户A查看</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.房主离开期间，房主麦位显示房主离开状态<br />
+	2.房主重进语音房后，麦位恢复点亮房主头像（昵称是常驻显示的）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>男性房主在房间内，查看房主标识</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示蓝性房主标识</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>女性房主在房间内，查看房主标识</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示女性房主标识</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208722" name="房间加锁-设置密码校验">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246309]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主设置密码时，不填入任何密码</p>]]></actions>
+	<expectedresults><![CDATA[<p>保存按钮置灰，不可点击</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	输入不足4<span style="color:#ffffff;">6</span>位数字</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	保存按钮置灰，不可点击</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	输入非数字</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	保存提示：密码只能为数字</p>
+<p>
+	ios：只能输入数字</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>设置房间密码保存直接后点击返回</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭弹窗，房间没有加锁，其他用户进入此房间不需要输入密码</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>已经加锁成功后在弹框删除密码并保存</p>]]></actions>
+	<expectedresults><![CDATA[<p>房间解锁成功，其他用户进入不需要输入密码即可进入</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208729" name="房间加密-输入密码校验">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246310]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>房间已加密</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	进入房间，在密码校验弹框中输入错误的4位密码</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	校验失败：弹窗上文案提示&ldquo;密码错误，请重新输入&rdquo;，点击删除按钮逐个清除已输入的密码</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	输入不足4位数字</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	提交按钮置灰，不可保存</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	输入正确密码后点击返回按钮（Android点击back按键）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	关闭弹框，无法进入房间，返回上一页</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	输入错误密码，提交之前房主取消了房间加密，用户提交错误密码</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	特殊情况，不造成异常即可，用户可以正常进入房间（toast提示密码正确，正在进入房间--此提示产品可接受）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208735" name="房间加锁-管理员操作（不适用）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246311]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>普通用户点击房间右上角…按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>无房间加锁入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>用户被设置为管理员后，点击房间右上角…按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>有房间加锁入口，点击后可以正常给房间加锁，其他用户进入房间需要输入正确密码</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>用户被设置为管理员后，点击已加锁房间右上角…按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>有房间加锁入口，点击后可以重置房间密码，其他用户进入房间需要输入最新的密码</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>用户被设置为管理员后，点击已加锁房间右上角…按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>有房间加锁入口，点击后可以删除房间密码，其他用户进入房间不需要输入密码</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208741" name="房间加锁-房主和管理员进入">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246312]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主进入自己加密的房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>不需要密码校验，直接进入</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>管理员进入房主加密的房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>不需要密码校验，直接进入</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	管理员进入其他管理员加密的房间</p>
+<p>
+	备注：管理员没有加锁解锁权限</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	不需要密码校验，直接进入</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208746" name="公告-设置广告检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246313]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>公告编辑页</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主编辑公告弹框界面，不输入内容，点击保存</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以保存成功，显示暂无公告</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>填写公告时，标题和内容均包含中英文/数字/特殊字符/表情</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.可以正常保存
+<br>2.用户点击公告区域调起公告查看，可以正常显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>内容超过500个字</p>]]></actions>
+	<expectedresults><![CDATA[<p>超出不可输入</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>输入过程中点击取消按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭弹框，公告没有变化</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>房主点击右上角更多按钮，选择编辑公告，输入内容为最大字数（内容500个字）</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.房间主界面房主昵称下方显示公告的前10个字，超出…显示
+<br>2.调起公告栏可以完整显示内容</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208753" name="公告-公告显示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246314]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>当前没有设置广告，用户首次进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏不显示房间公告</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>当前语音房已设置房间公告，用户首次进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏显示该房间的公告</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>2，房间公告未修改，用户再次进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏不显示房间公告</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>3，修改房间公告后，用户进入此房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏显示该房间最新的公告</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208759" name="退出房间-其他方式">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246315]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击右上角更多按钮，选择退出房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	离开当前房间，没有二次确认弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>管理员、普通观众点击右上角更多按钮，选择退出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>离开当前房间，没有二次确认弹框</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	房主/管理员/观众点击左上角返回按钮</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#ffffff;">均可以弹出二次确认框：确定退出当前房间吗？有选择按钮：下次不再提醒</span></p>
+<p>
+	房间显示最小化，点击最小化中关闭按钮，可正常退出房间</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	语音房内点击手机的back按钮（Android）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#ffffff;">均可以弹出二次确认框：确定退出当前房间吗？有选择按钮：下次不再提醒</span></p>
+<p>
+	&nbsp;</p>
+<p>
+	房间显示最小化，点击最小化中关闭按钮，可正常退出房间</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208765" name="活动条-配置多个">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246316]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>后台配置N个（N>=3）语音房活动条</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入对应语音房，查看活动条</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.活动条右上角展示切换按钮
+<br>2.优先展示排序优先级最高的活动条
+<br>3.点击可跳转到配置的地址</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击切换按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.切换到排序优先级第二的活动条
+<br>2.点击可跳转到配置的地址</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继续点击切换按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.按照后台配置的排序优先级显示，每一个活动条均可正常跳转
+<br>2.切换到最后一个活动条后继续点击切换按钮，可切换到第一个活动条，循环展示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208770" name="活动条-按照房间id展示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246317]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>后台配置语音房A显示活动条<br>1，语音房B显示活动条<br>2，语音房C未配置活动条</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入语音房A，查看语音房活动条入口</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示活动条1</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>退出语音房A，进入语音房B</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示活动条2</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>退出语音房B，进入语音房C</p>]]></actions>
+	<expectedresults><![CDATA[<p>不显示活动条</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>kill进程重启应用，进入语音房ABC</p>]]></actions>
+	<expectedresults><![CDATA[<p>语音房AB正常显示活动条1\2,语音房C不显示语音房</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208776" name="语音房-封闭座位（管理员对空座位）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246318]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>管理员点击空座位-选择封闭座位</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.点击即可关闭座位，座位显示封闭的样式，且toast提示“封闭成功”
+<br>2.管理员查看该栏变成：解封座位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>其他用户点击封禁座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“当前座位已关闭”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>管理员点击封闭座位-选择解封座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位恢复成为空座位状态，且toast提示“解封成功”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>其他用户点击该座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以成功上麦</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208782" name="封闭座位-退出房间重进/退出app重进/卸载app重装">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246319]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>座位已封禁，房主/管理员/观众退出房间重进查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位保持封禁状态，状态保存在服务器</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>座位已封禁，房主/管理员/观众退出app重进查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位保持封禁状态，状态保存在服务器</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>座位已封禁，房主/管理员/观众更换设备查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位保持封禁状态，状态保存在服务器</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208787" name="语音房-封闭座位声音（管理员对空座位）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246320]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击空座位-选择封闭座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.座位显示禁言状态，toast提示&ldquo;封闭座位声音成功&rdquo;<br />
+	2.再次点击空座位，对应操作变更为：开启座位声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>此时有用户上麦到该座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常在该座位上麦下麦，但是无法开启麦克风说话</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	管理员再次点击空座位-选择开启座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.座位恢复空座位状态，toast提示&ldquo;开启座位声音成功&rdquo;<br />
+	2.再次点击空座位，对应操作变更为：关闭座位声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208792" name="点有人座位-封闭座位声音（房主/管理员）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246321]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击座位上的用户-资料卡点击操作-选择封闭座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.关闭当前座位麦克风，操作成功提示&ldquo;封闭座位声音成功&rdquo;<br />
+	2.用户侧toast提示：当前座位已禁麦<br />
+	3.座位上的用户无法打开麦克风</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击座位上已禁言的用户-资料卡点击操作-选择开启座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.操作成功提示&ldquo;开启座位声音已开启&rdquo;<br />
+	2.用户侧toast提示：当前座位声音已开启<br />
+	3.座位上的用户可以自由开麦/关麦</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击座位上的用户-资料卡点击操作-选择封闭座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.关闭当前座位麦克风，操作成功提示&ldquo;封闭座位声音成功&rdquo;<br />
+	2.用户侧toast提示：<br />
+	3.座位上的用户无法打开麦克风</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击座位上已禁言的用户-资料卡点击操作-选择开启座位声音</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.操作成功提示&ldquo;开启座位声音成功&rdquo;<br />
+	2.用户侧toast提示：当前座位声音已开启<br />
+	3.座位上的用户可以自由开麦/关麦</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208798" name="座位封麦-用户关麦开麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246322]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>麦上用户关麦，房主或管理员封闭此座位声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>封闭成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>麦上用户开麦，房主或管理员封闭此座位声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>封闭成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，2麦上用户点击切换麦状态</p>]]></actions>
+	<expectedresults><![CDATA[<p>无法切换成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208803" name="语音房-封闭/开启座位失败">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246323]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击未封闭的座位-选择封闭座位之前，刚好有人上麦，房主再点击封闭座位</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	座位状态<span style="color:#ffffff;">未改</span>变为封闭状态，界面toast提示&quot;封闭<span style="color:#ffffff;">失败</span>成功&quot;，上座用户断开连麦，页面toast提示&ldquo;您已断开连麦&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="color:#d3d3d3;">房主点击封闭的座位-选择开启座位，开启座位失败</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#d3d3d3;">座位状态未改变，界面toast提示&quot;开启失败&quot;</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击未封闭的座位-选择封闭座位之前，刚好有人上麦，管理员再点击封闭座位</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	座位状态<span style="color:#ffffff;">未改</span>变为封闭状态，界面toast提示&quot;封闭<span style="color:#ffffff;">失败</span>成功&quot;，上座用户断开连麦，页面toast提示&ldquo;您已断开连麦&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="color:#d3d3d3;">管理员点击封闭的座位-选择开启座位，开启座位失败</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#d3d3d3;">座位状态未改变，界面toast提示&quot;开启失败&quot;</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208809" name="语音房-封闭/开启座位声音失败（删除）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246324]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击未封闭声音座位-选择封闭座位声音，封闭失败</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位声音状态未改变，界面toast提示"封闭座位声音失败"</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>房主点击封闭声音座位-选择开启座位声音，封闭失败</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位声音状态未改变，界面toast提示"开启座位声音失败"</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>管理员点击未封闭声音座位-选择封闭座位声音，封闭失败</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位声音状态未改变，界面toast提示"封闭座位声音失败"</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>管理员点击未封闭声音座位-选择封闭座位声音，封闭失败</p>]]></actions>
+	<expectedresults><![CDATA[<p>座位声音状态未改变，界面toast提示"开启座位声音失败"</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208815" name="踢出房间-踢出10分钟（管理员）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246325]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>管理员点击座位上的用户-资料卡点击操作-踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出框“请选择时长"，提示选择踢出时间5分钟、10分钟（后台可配置）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	选择10分钟，点击确定踢出按钮</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.管理侧toast提示&ldquo;当前用户已踢出&rdquo;<br />
+	2.用户侧离开房间并弹窗提示&ldquo;<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">您已被移出房间，详询房间管理</span>&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	用户10分钟内进入原来的语音房</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户侧弹窗提示&ldquo;<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">您已被移出房间，详询房间管理</span>&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>用户10分钟内进入其他语音房</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常进入语音房</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>用户超过10分钟再次进入原来被踢出的语音房</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常进入语音房</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208822" name="踢出房间-踢出观众">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246326]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击观众资料卡操作踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功踢出房间</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>管理员点击观众资料卡操作踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功踢出房间</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤1<br />
+	2，踢出房间后，指定踢出时间内进入房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户侧弹窗提示&ldquo;<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">您已被移出房间，详询房间管理</span>&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>继步骤1<br>2，踢出房间后，指定踢出时间后进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常进入语音房</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208828" name="踢出房间-踢出管理员">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246327]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击管理员资料卡操作踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功踢出房间</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤1,踢出房间后，指定踢出时间内进入房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户侧弹窗提示&ldquo;<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">您已被移出房间，详询房间管理</span>&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤1,踢出房间后，指定踢出时间后进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以正常进入语音房</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208833" name="踢出房间-用户不在房间">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246328]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击观众资料卡，用户退出房间，房主操作踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“当前用户已不在房间”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>管理员点击观众资料卡，用户退出房间，管理员操作踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“当前用户已不在房间”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208837" name="踢出房间-后台修改时间">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246329]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>后台修改踢出时间为1分钟和2分钟，房主/管理员踢出麦上用户</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出框“请选择时长"，提示选择踢出时间为后台配置的1分钟、2分钟</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>选择1分钟后，踢出用户</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功踢出用户，用户1分钟内无法进入房间，超过1分钟可以正常进入房间</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>1，选择2分钟后，踢出用户</p>]]></actions>
+	<expectedresults><![CDATA[<p>成功踢出用户，用户2分钟内无法进入房间，超过1分钟可以正常进入房间</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208842" name="排麦列表-置顶">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246330]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>座位已满，用户点击【排】,进入排队列表，房主与管理员查看</p>]]></actions>
+	<expectedresults><![CDATA[<p>列表中用户头像、性别、昵称+右侧显示置顶按钮</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，房主点击置顶A</p>]]></actions>
+	<expectedresults><![CDATA[<p>A排序置顶为第一</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>2，管理点击置顶B</p>]]></actions>
+	<expectedresults><![CDATA[<p>B排序置顶为第一</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>3，麦上出现空座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>B成功上麦到座位中，排麦按钮变成麦克风按钮
+A切换显示排在第一</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208848" name="排麦列表-无人排麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246331]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>无人排麦时，房主点击排麦进入排麦列表</p>]]></actions>
+	<expectedresults><![CDATA[<p>列表显示“当前没有在排队上座的用户”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208851" name="排麦列表-不同用户排麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246332]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>座位已满，非麦上用户点击排麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>可申请进入排队或取消排队入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	座位已满，麦上用户查看</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	无&ldquo;排&rdquo;入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>座位已满，管理员用户点击排麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>可申请进入排队或取消排队入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>座位已满，房主点击排麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>无申请进入排队或取消排队入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208857" name="排麦列表-点击头像">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246333]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击排麦列表中用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出用户资料卡</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208860" name="排麦列表-异常操作">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246334]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>座位已满，用户点击申请进入排麦列表，退出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>排麦列表不显示该用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>座位已满，用户点击申请进入排麦列表，网络断开</p>]]></actions>
+	<expectedresults><![CDATA[<p>排麦列表不显示该用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>座位已满，用户点击申请进入排麦列表，杀进程</p>]]></actions>
+	<expectedresults><![CDATA[<p>排麦列表不显示该用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>座位已满，用户点击申请进入排麦列表，用户被踢出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>排麦列表不显示该用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208866" name="管理员身份切换">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246335]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>A为管理员，点击B进行操作抱下座、封闭座位声音、踢出房间时，房主撤销A管理员身份</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“操作失败，你没有相应权限”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	A为管理员，点击B进行操作抱下座<span style="color:#ffffff;">、封闭座位声音</span>、踢出房间时，房主设置B管理员身份</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	toast提示&ldquo;操作失败，你无权对该用户进行操作&rdquo;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208870" name="抱用户下麦-用户已下麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246336]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击座位上用户A，弹出资料卡后，A用户主动下麦，房主点击抱用户下麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	toast提示&ldquo;用户已断开连麦&rdquo;（iOS提示已抱用户下麦，产品接受）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	房主点击座位上用户A，弹出资料卡后，A用户退出房间，房主点击抱用户下麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	toast提示&ldquo;用户已断开连麦&rdquo;（iOS提示已抱用户下麦，产品接受）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击座位上用户A，弹出资料卡后，A用户主动下麦，管理员点击抱用户下麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	toast提示&ldquo;用户已断开连麦&rdquo;（iOS提示已抱用户下麦，产品接受）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	管理员点击座位上用户A，弹出资料卡后，A用户退出房间，管理员点击抱用户下麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	toast提示&ldquo;用户已断开连麦&rdquo;（iOS提示已抱用户下麦，产品接受）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208876" name="上座-切换座位">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246337]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户上座后切换至其他空座位A</p>]]></actions>
+	<expectedresults><![CDATA[<p>切换成功，用户头像切换至座位A</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>用户上座后切换至其他有人座位B</p>]]></actions>
+	<expectedresults><![CDATA[<p>拉起该座位B的用户的资料卡</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	麦上用户切换座位同时，有其他用户落座</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	视服务器情况：<br />
+	1.先切换座位成功，其他用户上麦失败<br />
+	2.切换时其他用户已落座，则提示切换成功或拉起该用户的个人资料卡，无异常即可</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208881" name="上座-用户点击同一座位上座">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246338]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>AB用户同时点击同一空座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>A用户上麦成功，B用户上麦失败toast提示“上座失败”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208884" name="上座-上座后异常操作">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246339]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	用户上座后断开网络，其他用户查看房间座位</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户被下麦（3分钟后刷新）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	用户上座后杀进程，其他用户查看房间座位</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户被下麦（3分钟后刷新）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>用户上座后退出房间，其他用户查看房间座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>用户被下麦</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208889" name="上座-多人开麦说话">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246340]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>ABC上麦后，同时开始开麦说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>房间内用户ABC座位席同时显示说话的光圈动效，且声音正常清晰无卡顿</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208892" name="上座-关麦用户下麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246341]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>麦上用户静音后下麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>用户下麦成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>其他用户上麦相同座位</p>]]></actions>
+	<expectedresults><![CDATA[<p>其他用户麦为打开状态，说话房间内其他用户可听见</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208896" name="公屏-直播间规则">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246342]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	用户未登录，首次进入房间A</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏上显示安全提示文案，文案如下：追读官方提示：请自觉遵守直播间规则，任何传播违法、违规、低俗、暴力等不良信息的行为将会封停帐号。【iOS-flutter提示追音官方】</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	接步骤<br />
+	1，退出语音房重进</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏<span style="color:#d3d3d3;">不再</span>显示安全提示文案</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	退出语音房A进入其他语音房B</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏<span style="color:#d3d3d3;">不再</span>显示安全提示文案</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>用户已登录，首次进入房间A</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏上显示安全提示文案，文案如下：追读官方提示：请自觉遵守直播间规则，任何传播违法、违规、低俗、暴力等不良信息的行为将会封停帐号。</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	接步骤<br />
+	4，退出语音房重进</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏<span style="color:#d3d3d3;">不再</span>显示安全提示文案</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	退出语音房A进入其他语音房B</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏<span style="color:#d3d3d3;">不再</span>显示安全提示文案</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p>
+	接步骤<br />
+	4，kill进程重启进入语音房</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	公屏<span style="color:#d3d3d3;">不再</span>显示安全提示文案</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208905" name="公屏-查看最新消息">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246343]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>当前公屏消息较多，用户从上往下滑动查看公屏页面</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以查看更多历史消息</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	接步骤<br />
+	1，用户停留在历史消息页面，此时有用户发言</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<br />
+	1.用户仍然停留在历史消息页面<br />
+	2.在底部出现【查看最新消息】按钮（iOS是提示x条新消息）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	点击【查看最新消息】按钮（（iOS点击【x条新消息】按钮））</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	用户页面定位到最新消息的位置，【查看最新消息】按钮消失</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>2，此时不点击【查看最新消息】按钮，继续往上滑动页面</p>]]></actions>
+	<expectedresults><![CDATA[<p><br>1.可以查看更多历史消息
+<br>2.底部【查看最新消息】保持显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>2，此时不点击【查看最新消息】按钮，手动滑动到底部查看最新消息</p>]]></actions>
+	<expectedresults><![CDATA[<p>滑到底部时【查看最新消息】按钮消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208912" name="公屏-同时发送聊天消息">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246344]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>AB用户同时点击聊天，发送聊天消息，查看公屏显示</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏中显示AB聊天消息，内容不重叠丢失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208915" name="公屏-多人进场流水">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246345]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>ABC多人同时进入语音房间，查看公屏显示</p>]]></actions>
+	<expectedresults><![CDATA[<p>公屏中显示ABC进场消息，内容不重叠丢失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208918" name="用户操作关麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246346]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>游客点击关闭扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户听不见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>观众点击关闭扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户听不见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦上点击关闭扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户听不见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>房主点击关闭扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户听不见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208924" name="用户操作开麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246347]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>游客点击打开扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户可听见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>观众点击打开扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户可听见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦上点击打开声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户可听见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>房主点击打开扬声器，房间内麦上用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，用户可听见房间内声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208930" name="用户操作放音与静音">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246348]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击静音，用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，房间内用户不可听见用户声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击打开放音，用户说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>状态切换成功，房间内用户可听见用户声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208934" name="语音房-资料卡（观众视觉）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246349]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>观众查看房主资料卡</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名、关注、送花、送礼、举报</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>观众查看管理员资料卡</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名、关注、送花、送礼、举报</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>观众查看麦上用户资料卡</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名、关注、送花、送礼、举报</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	观众查看其他麦下观众资料卡</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名、关注、送花、举报</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>观众点击自己用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208941" name="资料卡-关注">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246350]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击麦下未关注用户的公屏发言昵称</p>]]></actions>
+	<expectedresults><![CDATA[<p>调起用户资料卡，资料卡上有关注按钮</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击关注按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“关注成功”，资料卡上关注按钮不显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击麦上任意未关注用户的头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>调起用户资料卡，资料卡上有关注按钮</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>接步骤<br>3，点击关注按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>toast提示“关注成功”，资料卡上关注按钮不显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208947" name="房主资料卡-举报/关注/送花/送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246351]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>游客点击房主</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>麦下观众点击房主</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击房主</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>接步骤1~<br>3，分别点击举报、关注、送花、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>不同身份用户操作，功能正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208953" name="管理员资料卡-举报/关注/送花/送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246352]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>游客点击管理</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>麦下观众点击管理</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击管理</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	接步骤1~<br />
+	3，分别点击举报、关注、送花、送礼</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	不同身份用户操作，功能正常（游客需要弹出登录入口）</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208959" name="普通用户资料卡-举报/关注/送花/送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246353]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>麦上用户点击其他麦上用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	麦上用户点击其他麦下用户公屏昵称</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出资料卡，有举报、关注、送花入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>麦下用户点击其他麦上用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出资料卡，有举报、关注、送花、送礼入口</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	麦下用户点击其他麦下用户公屏昵称</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出资料卡，有举报、关注、送花入口</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>接步骤1~<br>4，分别点击举报、关注、送花、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>不同状态用户操作，功能正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208966" name="赠送鲜花">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246354]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>点击用户，当前用户可赠送鲜花</p>]]></actions>
+	<expectedresults><![CDATA[<p>赠送按钮显示为送花</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击送花</p>]]></actions>
+	<expectedresults><![CDATA[<p>按钮切换显示为倒计时状态，倒计时X分钟</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	倒计时时间内点击送花</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="color:#ffffff;">没有交互，不能送花</span></p>
+<p>
+	toast提示请再等待XX秒才可送出一朵花</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>倒计时结束</p>]]></actions>
+	<expectedresults><![CDATA[<p>倒计时结束，鲜花按钮变成可点击状态，点击后送花成功，该用户资料页上鲜花的鲜花数+1</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208972" name="资料卡-房主/管理员点击自己用户头像">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246355]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主点击自己用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>管理员点击自己用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>底部弹出资料卡，显示用户头像、昵称、年龄、性别、粉丝数、魅力值、个人签名</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite>

@@ -4,41 +4,65 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"strconv"
+	"strings"
 
+	"com.todaytech.ben/studygo/day04/dto"
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
 
 func main() {
-	content, err := ioutil.ReadFile(`./要处理的/testsuite-deep.xml`)
-	ErrHandler(err)
-	var first TestsuiteFirst
-	err2 := xml.Unmarshal(content, &first)
+	xmlFold := "./要处理的"
+	outFold := "./程序生成的"
+	files, err := ioutil.ReadDir(xmlFold)
+	if err != nil {
+		fmt.Println(err)
+	}
+	for _, file := range files {
+		content, err := ioutil.ReadFile(xmlFold + string(os.PathSeparator) + file.Name())
+		ErrHandler(err)
+		var first dto.TestsuiteFirst
+		err2 := xml.Unmarshal(content, &first)
 
-	ErrHandler(err2)
-	//得到xml中的内容
-
-	exportToExcel(first.TestsuiteSecond)
+		ErrHandler(err2)
+		//得到xml中的内容
+		if len(first.Testcases) > 0 {
+			//把第一级的testcase加到第二级当中去
+			secondTestSuite := &dto.Testsuite{}
+			secondTestSuite.Testcases = append(secondTestSuite.Testcases, first.Testcases...)
+			first.TestsuiteSecond = append(first.TestsuiteSecond, *secondTestSuite)
+		}
+		exportToExcel(first.TestsuiteSecond, outFold, file.Name())
+	}
 
 	//生成excel
 
 }
-func exportToExcel(testsuiteSecond []Testsuite) {
+func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName string) {
 	f := excelize.NewFile()
 	sheetIndex := 1
+	if fileName == "语音房基础功能.testsuite-deep.xml" {
+		fmt.Println(fileName)
+	}
+
 	//设置sheet 模板
 	//注意range和使用下标的区别 range为静态而使用下标为动态，即在循环里边对切片的长度进行变化时会影响循环次数
 	for i := 0; i < len(testsuiteSecond); i++ {
 		//每一个testsuite就是一个sheet
+
 		testsuite := testsuiteSecond[i]
 		sheetName := "Sheet" + strconv.Itoa(sheetIndex)
 		if len(testsuite.TestsuiteThird) > 0 {
-			fmt.Print("执行前长度\t")
-			fmt.Println(len(testsuiteSecond))
+			// fmt.Print("执行前长度\t")
+			// fmt.Println(len(testsuiteSecond))
 			testsuiteSecond = append(testsuiteSecond, testsuite.TestsuiteThird...)
-			fmt.Print("执行后长度\t")
-			fmt.Println(len(testsuiteSecond))
+			// fmt.Print("执行后长度\t")
+			// fmt.Println(len(testsuiteSecond))
 			//对于这种不规则的，只对子树进行循环
+
+		}
+		if len(testsuite.Testcases) == 0 {
 			continue
 		}
 
@@ -59,6 +83,10 @@ func exportToExcel(testsuiteSecond []Testsuite) {
 		f.SetCellValue(sheetName, "F"+strconv.Itoa(colposition), "期望结果")
 		colposition++
 		for _, testcase := range testsuite.Testcases {
+			if testcase.Name == "礼物全麦连送-满座" {
+				fmt.Println(testcase.Name)
+			}
+
 			f.SetCellValue(sheetName, "A"+strconv.Itoa(colposition), testcase.Name)
 			f.SetCellValue(sheetName, "B"+strconv.Itoa(colposition), testcase.Summary)
 			f.SetCellValue(sheetName, "C"+strconv.Itoa(colposition), testcase.Preconditions)
@@ -69,19 +97,20 @@ func exportToExcel(testsuiteSecond []Testsuite) {
 				colposition++
 			}
 			colposition++
+
 		}
 
-		fmt.Println("----------执行次数-----------")
+		//fmt.Println("----------执行次数-----------")
 		sheetIndex++
 	}
 
-	fileName := "生成的测试用例结果.xlsx"
+	fileName = outFold + string(os.PathSeparator) + strings.Split(fileName, ".")[0] + ".xlsx"
 	err := f.SaveAs(fileName)
 
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Printf("生成成功，请查看《%s》文件", fileName)
+	fmt.Printf("%s文件生成成功\n", fileName)
 	// Create a new sheet.
 	// index := f.NewSheet("Sheet2")
 	// Set value of a cell.
@@ -98,57 +127,4 @@ func ErrHandler(err error) {
 	if err != nil {
 		panic(err)
 	}
-}
-
-//TestsuiteFirst xml最顶层
-type TestsuiteFirst struct {
-	NodeOrder       string      `xml:"node_order"`
-	Details         string      `xml:"details"`
-	TestsuiteSecond []Testsuite `xml:"testsuite"`
-}
-
-//Testsuite xml第二层
-type Testsuite struct {
-	Nodeorder      string      `xml:"node_order"`
-	Details        string      `xml:"details"`
-	Testcases      []Testcase  `xml:"testcase"`
-	Name           string      `xml:"name,attr"`
-	TestsuiteThird []Testsuite `xml:"testsuite"`
-}
-
-// //Testsuite xml第三层
-// type Testsuite struct {
-// 	Nodeorder string     `xml:"node_order"`
-// 	Details   string     `xml:"details"`
-// 	Testcases []Testcase `xml:"testcase"`
-// 	Name      string     `xml:"name,attr"`
-// }
-
-//Testcase 结构体为xml文件对应的实体类
-type Testcase struct {
-	NodeOrder             string `xml:"node_order"`
-	Externalid            string `xml:"externalid"`
-	Version               string `xml:"version"`
-	Summary               string `xml:"summary"`
-	Preconditions         string `xml:"preconditions"`
-	ExecutionType         string `xml:"excution_type"`
-	Importance            string `xml:"importance"`
-	EstimatedExecDuration string `xml:"estimated_exec_duration"`
-	Status                string `xml:"status"`
-	Steps                 Steps  `xml:"steps"`
-	Name                  string `xml:"name,attr"`
-	Internalid            string `xml:"internalid,attr"`
-}
-
-//Steps testcase中的步骤
-type Steps struct {
-	Step []Step `xml:"step"`
-}
-
-//Step Steps里的元素
-type Step struct {
-	StepNumber      string `xml:"step_number"`
-	Action          string `xml:"actions"`
-	Expectedresults string `xml:"expectedresults"`
-	ExecutionType   string `xml:"execution_type"`
 }

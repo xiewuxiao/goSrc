@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="语音测试" >
+<node_order><![CDATA[9]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="2208473" name="语音测试-开麦/闭麦">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246266]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>房主在语音房内开麦,用户A上麦并开麦，用户B未上麦</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+房主说话，A和B听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以听到声音，声音清晰无卡顿、回声等异常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>A说话，房主和B听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以听到声音，声音清晰无卡顿、回声等异常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>B说话，房主和A听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>听不到声音（B没有上麦）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>A关闭麦克风，A说话，房主和B听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>听不到声音（A没有开麦，无法收录声音）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>房主关闭麦克风，房主说话，AB听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>听不到声音（房主没有开麦）</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208480" name="语音测试-音量调节">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246267]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>房主在语音房内开麦,用户A上麦并开麦，用户B未上麦</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主说话，AB听声音的过程中调整手机音量键</p>]]></actions>
+	<expectedresults><![CDATA[<p>根据调节音量进度，听到声音音量变化明显，音量调节到0时听不到声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>A说话，房主和B听声音的过程中调整手机音量键</p>]]></actions>
+	<expectedresults><![CDATA[<p>根据调节音量进度，听到声音音量变化明显，音量调节到0时听不到声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208484" name="语音测试-耳机/蓝牙二级">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246268]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>语音房有人麦上说话，带耳机听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>声音不外放，通过耳机听到声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>语音房有人麦上说话，带蓝牙耳机听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>声音不外放，通过蓝牙耳机听到声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208488" name="语音测试-退后台">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246269]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>房主在语音房内开麦,用户A上麦并开麦，用户B未上麦</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+房主说话，A和B退后台听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以听到声音，声音清晰无卡顿、回声等异常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>A说话，房主和B退后台听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>可以听到声音，声音清晰无卡顿、回声等异常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208492" name="语音测试-来电/接听">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246270]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>房主在语音房内开麦,用户A上麦并开麦，用户B未上麦</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主开麦说话过程中收到来电提醒</p>]]></actions>
+	<expectedresults><![CDATA[<p>AB听不到来电的声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>房主接通电话，通话过程中，AB听声音</p>]]></actions>
+	<expectedresults><![CDATA[<p>AB听不到房主接听电话的声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>房主挂电话后继续回到房间内，跟用户A说话</p>]]></actions>
+	<expectedresults><![CDATA[<p>语音功能回复正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2208497" name="语音测试-多人语音">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246271]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>房主和3位麦上用户在房间语音通过</p>]]></actions>
+	<expectedresults><![CDATA[<p>多人语音功能正常，声音清晰无卡顿、回声等异常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>期间有用户上麦、下麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>上麦下麦操作不影响语音房内用户连麦</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>期间有用户进出语音房</p>]]></actions>
+	<expectedresults><![CDATA[<p>进出语音房不影响语音房内用户连麦</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite>

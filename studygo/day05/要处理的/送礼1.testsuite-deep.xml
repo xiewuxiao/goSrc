@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="送礼" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="2207257" name="送礼-文案与流光检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246075]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p>单个</p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	A赠送B礼物C，数量D，赠送成功，房主与房间内用户查看公屏区域显示文案</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	A用户昵称+&quot;给&quot;+B用户昵称+&quot;送了&quot;+C礼物+&quot;X&quot;+D数量</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，有流光显示，房主与房间内用户查看查看流光</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光文案：A用户+&quot;送&quot;+C礼物+&quot;X&quot;+D数量+连送x次数 流光显示2S</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207261" name="送礼-全麦下取消全部头像">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246076]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户点击礼物拉起礼物栏，全麦下点击全部用户头像</p>]]></actions>
+	<expectedresults><![CDATA[<p>全部头像被置灰显示未选中状态</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>选择礼物点击赠送</p>]]></actions>
+	<expectedresults><![CDATA[<p>提示“请选择想送礼的用户”</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207265" name="送礼-礼物栏头像排序">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246077]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	用户点击礼物按钮，拉起礼物栏，查看用户头像排序</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	房主排位第一<span style="color: rgb(255, 255, 255);">，标识为房主</span>，其余用户按照2-9顺序排序，头像里显示排序编号</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207268" name="送礼-礼物栏头像显示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246078]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户点击礼物按钮，拉起礼物栏，查看用户头像，未超出一屏</p>]]></actions>
+	<expectedresults><![CDATA[<p>用户头像显示正确，不可右滑显示更多</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>用户点击礼物按钮，拉起礼物栏，查看用户头像，超出一屏</p>]]></actions>
+	<expectedresults><![CDATA[<p>可右滑显示更多用户头像</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>2，右滑查看更多头像后，左滑</p>]]></actions>
+	<expectedresults><![CDATA[<p>滑动正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207273" name="送礼-全麦状态切换检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246079]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	送全麦状态下，切换非全麦状态，选择B用户后送礼，关闭礼物栏再次拉起礼物栏</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示非全麦状态并显示选中B用户</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	非全麦状态下，切换全麦状态并赠送礼物，关闭礼物栏再拉起礼物栏查看状态</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示全麦状态并显示选中所有用户</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207277" name="送礼-全麦状态切换后退出房间检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246080]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>全麦状态下切换非全麦状态下，后退出房间，再次进入房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示全麦状态</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207280" name="送礼-送礼麦上用户离开状态检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246081]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	全麦状态下，保留A用户是选中状态，其他用户是未选中状态，选中的用户下麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	全麦状态恢复显示选中全部用户</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	全麦状态下，保留A，B用户是选中状态，其他用户是未选中状态，选中的用户全部离开房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	全麦状态恢复显示选中全部用户</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>非全麦状态下，选中的用户下麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>恢复全麦状态，显示选中全部用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>非全麦状态下，选中的用户离开房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>恢复全麦状态，显示选中全部用户</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207286" name="送礼-数量检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246082]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户点击礼物按钮，拉起礼物栏，查看礼物数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>默认显示数量1</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击数量栏切换其他数量10/38/66/188/520/999/1314</p>]]></actions>
+	<expectedresults><![CDATA[<p>数量切换成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207290" name="送礼-赠送不同数量礼物">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246083]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物1数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物10数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物38数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物66数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物188数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物520数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物999数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p>用户赠送礼物1314数量</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物显示赠送对应数量，用户接收的礼物为对应数量，钻石扣除正确</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207300" name="送礼-数量文案检查">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246084]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>拉起礼物栏，点击数量栏查看对应数量文案</p>]]></actions>
+	<expectedresults><![CDATA[<p>1:一心一意
+10：十全十美
+38：全心全意
+66:六六大顺
+188：大吉大利
+520：我爱你
+999：天长地久
+1314：一生一世</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207303" name="送礼-赠送礼物时麦上无人">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246085]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	房主退出房间且麦上无用户，观众点击礼物栏，选择礼物赠送</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	送礼成功，成功送礼给房主</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207306" name="送礼-送礼时用户退出麦序">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246086]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>观众拉起礼物栏，麦上非房主用户A退出房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物栏中自动刷新不显示该用户头像</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>观众拉起礼物栏，麦上非房主用户A下麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物栏中自动刷新不显示该用户头像</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	观众拉起礼物栏，房主用户退出房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	礼物栏中依然显示主播头像</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	全麦模式下赠送礼物</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	礼物赠送成功,不在麦上的用户未接收到正常接收礼物，其他麦上用户可正常接收礼物</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207312" name="送礼-麦上用户送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246087]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	麦上拉起礼物栏，查看用户区域</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	显示除自己之外的用户头像，房主排在第一，其余按照座位的1-8先后排序显示，礼物板的用户头像序号为2-9</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>主播拉起礼物栏，查看用户区域</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示除自己之外的用户头像，用户按照座位的1-8排序显示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p> 选择用户赠送礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>礼物赠送成功</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207317" name="送礼-弱网下送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246088]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	弱网情况，用户拉起礼物栏，有用户上下麦，点击赠送礼物</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	及时刷新礼物栏用户头像，用户赠送礼物不成功</p>
+<p>
+	或赠送礼物成功，选中用语可正常接收到礼物</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207320" name="送礼-余额不足不同档位（不适用）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246089]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，钻石余额不足x<=1000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中1000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，余额不足1000<x<=6000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中6000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，余额不足6000<x<=30000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中30000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，余额不足30000<x<=68000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中68000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，余额不足68000<x<=98000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中98000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>赠送礼物，余额不足98000<x<=298000，确认去充值</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转到充值页面，显示选中298000档位</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207328" name="送礼-多条流光">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246090]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>A用户赠送礼物a,B赠送礼物b,触发流光，查看流光显示</p>]]></actions>
+	<expectedresults><![CDATA[<p>按照时间先后依次显示ab流光，流光显示2S后消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>A用户赠送礼物a,B赠送礼物b,C赠送礼物c,触发流光，房间内用户查看流光显示</p>]]></actions>
+	<expectedresults><![CDATA[<p>按照时间先后依次abc显示流光，每次最多显示2条流光，每条显示2S后消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207332" name="送礼-连送礼物流光">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246091]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>A用户赠送礼物a,连击赠送</p>]]></actions>
+	<expectedresults><![CDATA[<p>流光中礼物数量叠加，流光不消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>连击赠送结束</p>]]></actions>
+	<expectedresults><![CDATA[<p>流光显示2S后消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207336" name="送礼-流光未消失继续赠送">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246092]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>A用户赠送礼物a,赠送完成后触发流光，未点击连击</p>]]></actions>
+	<expectedresults><![CDATA[<p>流光显示中</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>2S内拉起礼物栏赠送同一礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>流光继续显示2S后消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207340" name="送礼-赠送不同礼物流光">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246093]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>A用户赠送礼物a,赠送完成后触发流光，未点击连击</p>]]></actions>
+	<expectedresults><![CDATA[<p>流光显示中</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，2S内拉起礼物了赠送不同礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>同时显示其他礼物流光
+第一条流光显示到达2s后消失
+第二条流光显示到达2S消失</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207344" name="送礼-单次流光等级显示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246094]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	1000钻石=1元</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	单次达到金额[0, 6.6)元之间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第一档</p>
+<p>
+	黑色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	单次达到金额[6.6, 30)元之间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第二档</p>
+<p>
+	​蓝色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	单次达到金额[30, 131.4)元之间</p>
+<p>
+	&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第三档</p>
+<p>
+	粉红色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	单次达到金额131.4及以上</p>
+<p>
+	&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第四档</p>
+<p>
+	紫色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207350" name="送礼-连击流光等级显示">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246095]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	单次赠送礼物达到金额[0, 6.6)元之间，连击后金额超出当前档位</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第一档</p>
+<p>
+	黑色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	单次赠送礼物达到金额[6.6, 30)元之间，连击后金额超出当前档位</p>
+<p>
+	&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第二档</p>
+<p>
+	​蓝色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	单次赠送礼物达到金额[30, 131.4)元之间，连击后金额超出当前档位</p>
+<p>
+	&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第三档</p>
+<p>
+	粉色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	单次赠送礼物达到金额131.4及以上，连击后查看流光</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示第四档</p>
+<p>
+	紫色背景流光</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207356" name="送礼-礼物倒计时后重新赠送">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246096]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	礼物赠送成功，倒计时结束，再次同一礼物赠送</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光显示正常，流光中数量重新计算</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207359" name="送礼-礼物连击时余额不足">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246097]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>礼物赠送连击时，余额不足</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹窗提示余额不足去充值</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207362" name="送礼-选择多个数量赠送">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246098]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	A赠送礼物a,数量选择10/38/66/188/520/999/131<br />
+	4，赠送后点击连击，触发流光,房间内用户查看</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	流光中显示A用户+&quot;送了&quot;+&quot;XXX&quot;+a礼物+D数量+&ldquo;连送&rdquo;+连击数</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207365" name="送礼-赠送不同金额大礼物">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246099]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>赠送金额价值520大礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示金额520大礼物特效流光</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>赠送金额价值1314大礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示金额1314大礼物特效流光</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>赠送金额价值2000大礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示金额2000大礼物特效流光</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207370" name="送礼-赠送多个大礼物特效">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246100]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	A赠送多个（a个）大礼物，赠送成功（要点击连送或者送多人）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	一次只显示一个大礼物特效 共显示a次大礼物特效</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>ABC同时赠送大礼物共a个，赠送成功</p>]]></actions>
+	<expectedresults><![CDATA[<p>一次只显示一个大礼物特效，根据服务器判断先后顺序依次显示，共显示a次大礼物特效</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207374" name="送礼-同时赠送大礼物与普通礼物">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246101]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	A赠送普通礼物，触发普通流光 B赠送大礼物，触发大礼物特效</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	按照时间先后顺序依次显示对应礼物流光+特效</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207377" name="送礼-全服广播文案（锁定，两端都没有做）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246102]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>用户A赠送礼物到达2000后触发全服广播查看广播文案</p>]]></actions>
+	<expectedresults><![CDATA[<p>A昵称在房间名送出 礼物名*数量
+其他房间内文案后显示跳转箭头，本房间内不显示箭头
+送礼用户昵称限制4个字，超出…显示
+房间名限制10个字</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207380" name="送礼-多条全服广播（锁定）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246103]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>多个用户赠送礼物到达2000后触发全服广播，全平台用户查看房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>一次只显示一条广播，根据时间先后顺序依次显示完成</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207383" name="送礼-不同平台用户送礼">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246104]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>ios用户给android用户赠送礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>android用户可正常接收到礼物</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>android用户给ios用户赠送礼物</p>]]></actions>
+	<expectedresults><![CDATA[<p>ios用户可正常接收礼物</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207390" name="语音房-授权失败开音再次授权（手机支持再次授权）（不适用）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246106]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	iOS-fultter版本首次请求权限，拒绝后会提示让用户自行设置</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	手机支持再次授权，授权失败后点击房间中礼物旁扬声器</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出授权弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击取消</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	授权失败，扬声器显示为关闭状态，无法听见房间内其他用户声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击确定</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	授权成功，喇叭切换显示打开状态，可正常听见房间内声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207395" name="语音房-授权失败开音再次授权（手机不支持再次授权）（不适用）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246107]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	手机不支持再次授权，授权失败后点击房间中礼物旁扬声器</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出引导开启提示弹窗 文案：&quot;追读小说&quot;需要你的麦克风权限方可开启声音，请至设置中打开 下方显示：取消和确定选项</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击取消</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭弹窗，未授权成功，无法听见房间内其他用户声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击确定进入设置中打开麦克风权限，回到房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹框消失，授权成功，扬声器切换显示开音状态</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207400" name="语音房-授权失败上麦再次授权（手机支持再次授权）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246108]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>手机支持再次授权，授权失败后点击上麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出授权弹框</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击取消</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	授权失败，显示关麦状态，用户正常上麦，说话房间内用户听不见声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击确定</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	授权成功，显示开麦状态，用户正常上麦，说话房间内用户可听见声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207405" name="语音房-授权失败上麦再次授权（手机不支持再次授权）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246109]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	iOS-fultter版初次请求授权拒绝后提示自行设置</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>手机不支持再次授权，授权失败后点击上麦</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹出引导开启提示弹窗
+文案："追读小说"需要你的麦克风权限方可开启声音，请至设置中打开
+下方显示：取消和确定选项</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击取消</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	关闭弹窗，未授权成功，用户正常上麦，显示关麦状态，说话房间内用户听不见声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	继步骤<br />
+	1，点击确定进入设置中打开麦克风权限，回到房间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹框消失，授权成功，用户正常上麦，显示开麦状态，说话房间内用户可听见声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207410" name="语音房-授权失败排队再次授权（手机支持再次授权）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246110]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	iOS-fultter版本首次请求权限，不允许后提示自行设置</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	手机支持再次授权，授权失败后点击排麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出授权弹框</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击取消</p>]]></actions>
+	<expectedresults><![CDATA[<p>授权失败，可正常排队，上麦后，显示关麦状态，说话对方听不见声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击确定</p>]]></actions>
+	<expectedresults><![CDATA[<p>授权成功，可正常排队，上麦后，显示开麦状态，说话对方可听见声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207415" name="语音房-授权失败排队再次授权（手机不支持再次授权）">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246111]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	iOS-fultter版本首次请求权限，不允许后提示自行设置</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	手机不支持再次授权，授权失败后点击排麦</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	弹出引导开启提示弹窗 文案：&quot;追读小说&quot;需要你的麦克风权限方可开启声音，请至设置中打开 下方显示：取消和确定选项</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击取消</p>]]></actions>
+	<expectedresults><![CDATA[<p>关闭弹窗，未授权成功，可正常排队，上麦后，显示关麦状态，说话对方听不见声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击确定进入设置中打开麦克风权限，回到房间</p>]]></actions>
+	<expectedresults><![CDATA[<p>弹框消失，授权成功，可正常排队，上麦后，显示开麦状态，说话对方可听见声音</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207420" name="语音房-登录">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246112]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>游客未登录时点击座位、发言、送礼，弹出登录提示</p>]]></actions>
+	<expectedresults><![CDATA[<p>显示：请先登录
+有微信和手机登录两个选项</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>点击手机登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>拉起手机登录界面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>点击微信登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>拉起微信登录</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>继步骤2<br>3，登录成功后点击座位、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>可正常操作</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207426" name="语音房-网络异常">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246113]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>进入房间后，断开网络，点击上麦、排麦、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>有网络异常提示，提示“网络似乎开小差了”，送礼钻石无扣除</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>进入房间后，连接弱网，点击上麦、排麦、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>提示“网络似乎开小差了”
+或可正常操作</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，2恢复正常网络，点击上麦、排麦、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>操作正常，无网络提示</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207431" name="语音房-不同网络">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246114]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>wifi下进入房间，操作上麦、排麦、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>操作正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>切换4G网络，进入房间，操作上麦、排麦、发言、送礼</p>]]></actions>
+	<expectedresults><![CDATA[<p>操作正常</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207435" name="语音房-微信账号被踢">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246115]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>语音房间内，微信账户在其他设备中登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>提示用户被登出
+显示：您的账号在别处登录，您被迫下线，若非本人操作，请即时登录修改密码
+下方显示选项：重新登录、我知道了</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击重新登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转进入登录界面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击我知道了</p>]]></actions>
+	<expectedresults><![CDATA[<p>退出当前帐号，留在当前页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207440" name="语音房-手机账号被踢">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246116]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>语音房间内，手机账户在其他设备中登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>提示用户被登出
+显示：您的账号在别处登录，您被迫下线，若非本人操作，请即时登录修改密码
+下方显示选项：重新登录、我知道了</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击重新登录</p>]]></actions>
+	<expectedresults><![CDATA[<p>跳转进入登录界面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>继步骤<br>1，点击我知道了</p>]]></actions>
+	<expectedresults><![CDATA[<p>退出当前帐号，留在当前页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2207445" name="语音房-账号被踢后返回">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[2246117]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p></p>]]></summary>
+	<preconditions><![CDATA[<p></p>]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>账号被踢，点击重新登录后，再点击返回按钮</p>]]></actions>
+	<expectedresults><![CDATA[<p>回到跳转前的页面</p>]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite>
