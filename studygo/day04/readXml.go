@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -40,6 +41,7 @@ func main() {
 
 }
 func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName string) {
+
 	f := excelize.NewFile()
 	sheetIndex := 1
 	if fileName == "语音房基础功能.testsuite-deep.xml" {
@@ -87,13 +89,13 @@ func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName str
 				fmt.Println(testcase.Name)
 			}
 
-			f.SetCellValue(sheetName, "A"+strconv.Itoa(colposition), testcase.Name)
-			f.SetCellValue(sheetName, "B"+strconv.Itoa(colposition), testcase.Summary)
-			f.SetCellValue(sheetName, "C"+strconv.Itoa(colposition), testcase.Preconditions)
+			f.SetCellValue(sheetName, "A"+strconv.Itoa(colposition), regReplaceAll(testcase.Name))
+			f.SetCellValue(sheetName, "B"+strconv.Itoa(colposition), regReplaceAll(testcase.Summary))
+			f.SetCellValue(sheetName, "C"+strconv.Itoa(colposition), regReplaceAll(testcase.Preconditions))
 			for _, step := range testcase.Steps.Step {
-				f.SetCellValue(sheetName, "D"+strconv.Itoa(colposition), step.StepNumber)
-				f.SetCellValue(sheetName, "E"+strconv.Itoa(colposition), step.Action)
-				f.SetCellValue(sheetName, "F"+strconv.Itoa(colposition), step.Expectedresults)
+				f.SetCellValue(sheetName, "D"+strconv.Itoa(colposition), regReplaceAll(step.StepNumber))
+				f.SetCellValue(sheetName, "E"+strconv.Itoa(colposition), regReplaceAll(step.Action))
+				f.SetCellValue(sheetName, "F"+strconv.Itoa(colposition), regReplaceAll(step.Expectedresults))
 				colposition++
 			}
 			colposition++
@@ -127,4 +129,11 @@ func ErrHandler(err error) {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func regReplaceAll(old string) string {
+	//默认是贪婪模式；在量词后面直接加上一个问号？就是非贪婪模式。
+	replaceReg := "<.*?>|&.*?;"
+	reg := regexp.MustCompile(replaceReg)
+	return string(reg.ReplaceAllString(old, ``))
 }
