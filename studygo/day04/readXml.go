@@ -44,9 +44,6 @@ func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName str
 
 	f := excelize.NewFile()
 	sheetIndex := 1
-	if fileName == "语音房基础功能.testsuite-deep.xml" {
-		fmt.Println(fileName)
-	}
 
 	//设置sheet 模板
 	//注意range和使用下标的区别 range为静态而使用下标为动态，即在循环里边对切片的长度进行变化时会影响循环次数
@@ -85,9 +82,6 @@ func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName str
 		f.SetCellValue(sheetName, "F"+strconv.Itoa(colposition), "期望结果")
 		colposition++
 		for _, testcase := range testsuite.Testcases {
-			if testcase.Name == "礼物全麦连送-满座" {
-				fmt.Println(testcase.Name)
-			}
 
 			f.SetCellValue(sheetName, "A"+strconv.Itoa(colposition), regReplaceAll(testcase.Name))
 			f.SetCellValue(sheetName, "B"+strconv.Itoa(colposition), regReplaceAll(testcase.Summary))
@@ -98,7 +92,7 @@ func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName str
 				f.SetCellValue(sheetName, "F"+strconv.Itoa(colposition), regReplaceAll(step.Expectedresults))
 				colposition++
 			}
-			colposition++
+			//colposition++
 
 		}
 
@@ -133,7 +127,13 @@ func ErrHandler(err error) {
 
 func regReplaceAll(old string) string {
 	//默认是贪婪模式；在量词后面直接加上一个问号？就是非贪婪模式。
-	replaceReg := "<.*?>|&.*?;"
+	replaceReg := "<.*?>|&.*?;|\r"
+	
 	reg := regexp.MustCompile(replaceReg)
-	return string(reg.ReplaceAllString(old, ``))
+	reStr := string(reg.ReplaceAllString(old, ``))
+	if strings.Index(old,"已安装qq") >0 {
+		fmt.Print(strings.Index(reStr," "))
+		fmt.Print(reStr)
+	}
+	return reStr
 }
