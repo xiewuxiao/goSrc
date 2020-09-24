@@ -1,0 +1,2244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="网络相关" >
+<node_order><![CDATA[7]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite name="FEC功能优化" >
+<node_order><![CDATA[0]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015149" name="FEC功能优化">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[807]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p style="margin: 0px; padding: 0px; color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">
+	需求背景：<br />
+	以前视频流yy协议没有采用可变字段，开启fec功能的情况下，如果增加视频流协议字段，服务器不能兼容解码fec包。</p>
+<p style="margin: 10px 0px 0px; padding: 0px; color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">
+	涉及平台：<br />
+	android/ios</p>
+<p style="margin: 10px 0px 0px; padding: 0px; color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">
+	设计方案：<br />
+	1、参照音频流协议重设视频流协议，明确哪些字段参与了fec编码。</p>
+<p style="margin: 10px 0px 0px; padding: 0px; color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(255, 255, 255);">
+	测试要求：<br />
+	对比开与不开FEC的性能指标：CPU使用，内存使用，流量使用，帧率，延时<br />
+	分别对比下面4个case<br />
+	1.正常网络，不损伤<br />
+	2.一麦上行丢包10%+延时150ms<br />
+	3.一麦上行丢包20%+延时100-200ms（乱序）<br />
+	4.一麦上行丢包20%+延时100-200ms</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+
+</testcase>
+
+<testcase internalid="3015151" name="FEC日志检查">
+	<node_order><![CDATA[101]]></node_order>
+	<externalid><![CDATA[808]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	fec:<br />
+	要设置20%丢包和100延迟,主播上下行都设置丢包和延时<br />
+	然后查主播字段<br />
+	勾选32位uid<br />
+	uid：74091&nbsp;74092<br />
+	sid：65552&nbsp;65553</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="font-family: &quot;Microsoft Yahei&quot;; font-size: 16px; white-space: pre-wrap; background-color: rgb(255, 255, 255);">前提：后台打开FEC开关 </span></p>
+<p>
+	<span style="font-family: &quot;Microsoft Yahei&quot;; font-size: 16px; white-space: pre-wrap; background-color: rgb(255, 255, 255);">1、主播初始化-进频道-开播音视频，观众进频道观看视频</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<span style="font-family: &quot;Microsoft Yahei&quot;; font-size: 16px; white-space: pre-wrap; background-color: rgb(255, 255, 255);">1、主播可以正常开播，观众端音视频同步，查看<span style="color:#ff0000;">主播日志关键字fec</span>，能查到说明是打开FEC的</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="单人开播场景主播端" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015155" name="主播端上行丢包5%，延时100-200ms">
+	<node_order><![CDATA[1]]></node_order>
+	<externalid><![CDATA[809]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	注意：测试丢包延时的同事，在测试过程中可以选择不同的丢包、延时方式</p>
+<p>
+	例如丢包时可以选择：</p>
+<p>
+	periodic loss：周期性丢包<br />
+	random loss：随机丢包率<br />
+	burst loss：突发性丢包<br />
+	延时可以选择：<br />
+	Fixed：固定延时<br />
+	Uniform distributed：均匀分布<br />
+	Normal distributed：正态分布<br />
+	Linear：线性<br />
+	burst ：突发<br />
+	以上随机组合测试丢包延时</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	使用Network emulator 工具，New一个Filter，这个Filter 设置Adapter 为随身wifi的网卡，<span style="color: rgb(255, 0, 0);">设置Protocol 为UDP.</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、手机连接上Network emulator后，主播进入频道开播，观众进频道设置主播视图</p>
+<p>
+	2、设置主<span style="color:#ff0000;">播上行丢包率5%，延时100~200</span>，主播端开播<span style="color:#ff0000;">10分钟以上</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1-2、观众进入直播间观看视频流畅，不会出现卡死，闪退等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015158" name="主播端上行丢包15%，延时100-200ms">
+	<node_order><![CDATA[2]]></node_order>
+	<externalid><![CDATA[810]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	注意：测试丢包延时的同事，在测试过程中可以选择不同的丢包、延时方式</p>
+<p>
+	例如丢包时可以选择：</p>
+<p>
+	periodic loss：周期性丢包<br />
+	random loss：随机丢包率<br />
+	burst loss：突发性丢包<br />
+	延时可以选择：<br />
+	Fixed：固定延时<br />
+	Uniform distributed：均匀分布<br />
+	Normal distributed：正态分布<br />
+	Linear：线性<br />
+	burst ：突发<br />
+	以上随机组合测试丢包延时</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	使用Network emulator 工具，New一个Filter，这个Filter 设置Adapter 为随身wifi的网卡，<span style="color: rgb(255, 0, 0);">设置Protocol 为UDP.</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、手机连接上Network emulator后，主播进入频道开播，观众进频道设置主播视图</p>
+<p>
+	2、设置<span style="color:#ff0000;">主播上行丢包率15%，延时100~200</span>，主播端开播<span style="color:#ff0000;">10分钟以上</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1-2、观众进入直播间观看视频流畅，不会出现卡死，闪退等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015161" name="主播断网重连">
+	<node_order><![CDATA[5]]></node_order>
+	<externalid><![CDATA[811]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、主播音视频开播，观众进频道设置主播视图，<span style="color:#ff0000;">主播断开网络后迅速重连</span></p>
+<p>
+	2、主播再次<span style="color:#ff0000;">断开网络</span>，<span style="color:#ff0000;">30s后重连</span></p>
+<p>
+	3、主播再次<span style="color:#ff0000;">断开网络</span>，<span style="color:#ff0000;">1min后重连</span></p>
+<p>
+	4、<span style="color:#ff0000;">反复</span>通断几次网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3：<span style="color:#ff0000;">断开网络</span>，主播端预览画面正常且收到<span style="color:#ff0000;">网络质量状态回调onNetworkQuality（6）</span>，观众看到主播的画面停在断网前最后一帧，听不到主播的音频，<span style="color:#ff0000;">连接上网络后</span>，主播预览画面正常，观众端收听观看主播的音视频正常，音画同步；主播及观众都能收到主播的<span style="color:#ff0000;">网络状态质量回调onNetworkQuality（1-5）</span></p>
+<p>
+	4、无崩溃等异常</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015164" name="主播切换网络（PC无）">
+	<node_order><![CDATA[14]]></node_order>
+	<externalid><![CDATA[812]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	主播<span style="color:#ff0000;">连接wifi</span>开播，观众进频道设置主播视图，在直播过程主播将网络<span style="color:#ff0000;">切换为4G</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	主播将<span style="color:#ff0000;">4G网络切换为WiFi</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	主播将<span style="color:#ff0000;">WiFi切换为ipv6网络</span>---ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	主播将<span style="color:#ff0000;">ipv6网络切换为WiFi</span> ---ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	WiFi <span style="color:#ff0000;">A</span>切换为WiFi <span style="color:#ff0000;">B</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	主播切换至<span style="color:#ff0000;">无效WiFi</span>（wifi信号好，路由器那边连接不了internet)，再次返回直播间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	直播暂停，主播端预览画面正常，观众端观看主播画面停止在最后一帧，放大视图黑屏</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="单人开播场景观众端" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015173" name="观众端下行丢包50%">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[813]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	损伤仪配置方法可以查看：ONENOTE-&gt;音频跑分文生-&gt;损伤仪配置截图；</p>
+<p>
+	&nbsp;</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	测试观众端弱网观看：使用实验室损伤仪网络，观看PC超清开播的频道。</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、手机连接上网络损伤仪网络后</p>
+<p>
+	2、主播开播，观众进入频道观看</p>
+<p>
+	3、设置<span style="color:#ff0000;">观众下行</span>设置<span style="color:#ff0000;">随机丢包50%</span>、其余不限制，观看直播<span style="color:#ff0000;">5分钟以上（必须先进频道再开启弱网）</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3能扛受住丢包，观众观看视频流畅，音视频同步，不会出现卡死，闪退，花屏等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015176" name="观众端下行丢包20%，rtt抖动500~700ms">
+	<node_order><![CDATA[1]]></node_order>
+	<externalid><![CDATA[814]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	损伤仪配置方法可以查看：ONENOTE-&gt;音频跑分文生-&gt;损伤仪配置截图；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	测试观众端弱网观看：使用实验室损伤仪网络，观看PC超清开播的频道。</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、手机连接上网络损伤仪网络后</p>
+<p>
+	2、主播开播，观众进频道观看</p>
+<p>
+	3、设置<span style="color:#ff0000;">观众下行</span>设置<span style="color:#ff0000;">随机丢包20%</span>、<span style="color:#ff0000;">rtt抖动500~700ms</span> 其余不限制，观看直播<span style="color:#ff0000;">5分钟以上</span>（<span style="color:#ff0000;">必须先进频道再开启弱网</span>）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3能扛受住弱网，观众观看视频流畅，音视频同步，不会出现卡死，闪退，花屏等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015179" name="观众端下行丢包35%，rtt抖动300~400ms">
+	<node_order><![CDATA[2]]></node_order>
+	<externalid><![CDATA[815]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	损伤仪配置方法可以查看：ONENOTE-&gt;音频跑分文生-&gt;损伤仪配置截图；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	测试观众端弱网观看：使用实验室损伤仪网络，观看PC超清开播的频道。</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、手机连接上网络损伤仪网络后</p>
+<p>
+	2、主播开播，观众进入频道观看</p>
+<p>
+	3、设置<span style="color:#ff0000;">观众下行</span>设置<span style="color:#ff0000;">随机丢包35%、rtt抖动300~400ms</span>、其余不限制，观看直播<span style="color:#ff0000;">5分钟以上（必须先进频道再开启弱网）</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~43能扛受住弱网，观众观看视频流畅，音视频同步，不会出现卡死，闪退，花屏等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015182" name="观众断网重连">
+	<node_order><![CDATA[3]]></node_order>
+	<externalid><![CDATA[816]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、主播音视频开播，观众进频道设置主播视图，<span style="color:#ff0000;">观众断开网络后迅速重连</span></p>
+<p>
+	2、观众再次<span style="color:#ff0000;">断开网络</span>，<span style="color:#ff0000;">30s后重连</span></p>
+<p>
+	3、观众再次<span style="color:#ff0000;">断开网络</span>，<span style="color:#ff0000;">1min后重连</span></p>
+<p>
+	4、<span style="color:#ff0000;">反复</span>通断几次网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3：<span style="color:#ff0000;">断开网络</span>，主播端预览画面正常，观众看到主播的画面停在断网前最后一帧，听不到主播的音频且收到网络质量状态回调onNetworkQuality（6），<span style="color:#ff0000;">连接上网络后</span>，主播预览画面正常，观众端收听观看主播的音视频正常，音画同步，观众收到自己的网络状态质量回调onNetworkQuality（1-5）</p>
+<p>
+	4、无崩溃等异常</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015185" name="观众切换网络（PC无）">
+	<node_order><![CDATA[4]]></node_order>
+	<externalid><![CDATA[817]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<ol>
+	<li>
+		主播开播，观众进频道设置主播视图</li>
+	<li>
+		观众连接<span style="color:#ff0000;">wifi</span>观看直播，将网络<span style="color:#ff0000;">切换为4G</span></li>
+</ol>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1-2、切换成功，切换过程中，直播会断一下，切换过来后可以继续观看直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	观众将<span style="color:#ff0000;">4G切换为WiFi</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续观看直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	观众将<span style="color:#ff0000;">WiFi切换为ipv6网络</span>&nbsp; ---ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续观看直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	观众将<span style="color:#ff0000;">ipv6网络切换为WiFi</span>&nbsp; ---ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续观看直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	观众将<span style="color:#ff0000;">WiFi A</span>切换为<span style="color:#ff0000;">WiFi B</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	切换成功，切换过程中，直播会断一下，切换过来后可以继续观看直播</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	观众切换至<span style="color:#ff0000;">无效WiFi</span>（wifi信号好，路由器那边连接不了internet),再次返回直播间</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	直播暂停，观众观看主播画面停止在最后一帧，放大视图黑屏</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="连麦场景" >
+<node_order><![CDATA[3]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015194" name="连麦时断网重连">
+	<node_order><![CDATA[0]]></node_order>
+	<externalid><![CDATA[818]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、用户A和B在频道内连麦时，<span style="color:#ff0000;">A断开网络后迅速重连</span></p>
+<p>
+	2、A再次<span style="color:#ff0000;">断开网络，30s后重连</span></p>
+<p>
+	3、A再次<span style="color:#ff0000;">断开网络，1min后重连</span></p>
+<p>
+	4、<span style="color:#ff0000;">反复</span>通断几次网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3：<span style="color:#ff0000;">断开网络</span>，A收到网络质量状态回调onNetworkQuality（6），B看到A的画面停在断网前最后一帧，语音通话中断，<span style="color:#ff0000;">连接上网络后</span>，可以继续连麦，音视频正常，网络状态质量回调onNetworkQuality（1-5）</p>
+<p>
+	4、无崩溃等异常</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015197" name="同频道连麦时切换网络（pc无）">
+	<node_order><![CDATA[1]]></node_order>
+	<externalid><![CDATA[819]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	前提：<span style="color:#ff0000;">用户的wifi2网络为IPV6网络</span></p>
+<p>
+	用户A和用户B进行连麦，用户A使用<span style="color:#ff0000;">WiFi</span>网络</p>
+<p>
+	1、用户B网络<span style="color:#ff0000;">从WiFi切换为4G</span></p>
+<p>
+	2、用户B网络<span style="color:#ff0000;">从4G切换为WiFi</span></p>
+<p>
+	3、用户B网络<span style="color:#ff0000;">从WiFi切换为WiFi2（ipv6）</span>--ios端需要执行此步骤</p>
+<p>
+	4、用户B网络<span style="color:#ff0000;">从WiFi2（ipv6）切换为WiFi </span>----ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~4在切换过程中，音频和视频会中断一下，切换好后，可以继续连麦</p>
+<p>
+	&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	前提：<span style="color:#ff0000;">用户的WiFi2网络为ipv6网络</span></p>
+<p>
+	用户A和用户B进行连麦，用户A使用<span style="color:#ff0000;">4G</span>网络</p>
+<p>
+	1、用户B网络<span style="color:#ff0000;">从WiFi切换为4G</span></p>
+<p>
+	2、用户B网络<span style="color:#ff0000;">从4G切换为WiFi</span></p>
+<p>
+	3、用户B网络<span style="color:#ff0000;">从WiFi切换为WiFi2（ipv6）</span>--ios端需要执行此步骤</p>
+<p>
+	4、用户B网络<span style="color:#ff0000;">从WiFi2（ipv6）切换为WiFi</span>&nbsp;--ios端需要执行此步骤</p>
+<div>
+	&nbsp;</div>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~4在切换过程中，音频和视频会中断一下，切换好后，可以继续连麦</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015201" name="跨频道连麦时切换网络（pc无）">
+	<node_order><![CDATA[2]]></node_order>
+	<externalid><![CDATA[820]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	前提：<span style="color:#ff0000;">用户的wifi2网络为IPV6网络</span></p>
+<p>
+	用户A和用户B进行跨频道连麦，用户A使用<span style="color:#ff0000;">WiFi</span>网络</p>
+<p>
+	1、用户B网络<span style="color:#ff0000;">从WiFi切换为4G</span></p>
+<p>
+	2、用户B网络<span style="color:#ff0000;">从4G切换为WiFi</span></p>
+<p>
+	3、用户B网络<span style="color:#ff0000;">从WiFi切换为WiFi2（ipv6）</span>--ios端需要执行此步骤</p>
+<p>
+	4、用户B网络<span style="color:#ff0000;">从WiFi2（ipv6）切换为WiFi </span>----ios端需要执行此步骤</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~4在切换过程中，音频和视频会中断一下，切换好后，可以继续连麦</p>
+<p>
+	&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	前提：<span style="color:#ff0000;">用户的WiFi2网络为ipv6网络</span></p>
+<p>
+	用户A和用户B进行跨频道连麦，用户A使用<span style="color:#ff0000;">4G</span>网络</p>
+<p>
+	1、用户B网络从WiFi切换为4G</p>
+<p>
+	2、用户B网络<span style="color:#ff0000;">从4G切换为WiFi</span></p>
+<p>
+	3、用户B网络<span style="color:#ff0000;">从WiFi切换为WiFi2（ipv6）</span>--ios端需要执行此步骤</p>
+<p>
+	4、用户B网络<span style="color:#ff0000;">从WiFi2（ipv6）切换为WiFi</span>&nbsp;--ios端需要执行此步骤</p>
+<div>
+	&nbsp;</div>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~4在切换过程中，音频和视频会中断一下，切换好后，可以继续连麦</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015205" name="跨频道连麦-主播1丢包5%">
+	<node_order><![CDATA[3]]></node_order>
+	<externalid><![CDATA[821]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	注意：测试丢包延时的同事，在测试过程中可以选择不同的丢包、延时方式</p>
+<p>
+	例如丢包时可以选择：</p>
+<p>
+	periodic loss：周期性丢包<br />
+	random loss：随机丢包率<br />
+	burst loss：突发性丢包<br />
+	延时可以选择：<br />
+	Fixed：固定延时<br />
+	Uniform distributed：均匀分布<br />
+	Normal distributed：正态分布<br />
+	Linear：线性<br />
+	burst ：突发<br />
+	以上随机组合测试丢包延时</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	使用Network emulator 工具，New一个Filter，这个Filter 设置Adapter 为随身wifi的网卡，<span style="color: rgb(255, 0, 0);">设置Protocol 为UDP.</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、主播1手机连接上Network emulator后，进入A频道开播</p>
+<p>
+	2、主播2在B频道开播，主播1、2跨频道连麦</p>
+<p>
+	3、设置<span style="color:#ff0000;">主播1上行丢包率5%，下行丢包率5%</span>，主播端开播<span style="color:#ff0000;">10分钟以上</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3、主播1、2连麦流畅，不会出现卡死，闪退等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015208" name="跨频道连麦-主播1丢包15%">
+	<node_order><![CDATA[4]]></node_order>
+	<externalid><![CDATA[822]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	注意：测试丢包延时的同事，在测试过程中可以选择不同的丢包、延时方式</p>
+<p>
+	例如丢包时可以选择：</p>
+<p>
+	periodic loss：周期性丢包<br />
+	random loss：随机丢包率<br />
+	burst loss：突发性丢包<br />
+	延时可以选择：<br />
+	Fixed：固定延时<br />
+	Uniform distributed：均匀分布<br />
+	Normal distributed：正态分布<br />
+	Linear：线性<br />
+	burst ：突发<br />
+	以上随机组合测试丢包延时</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	使用Network emulator 工具，New一个Filter，这个Filter 设置Adapter 为随身wifi的网卡，<span style="color: rgb(255, 0, 0);">设置Protocol 为UDP.</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1、主播1手机连接上Network emulator后，在A频道开播</p>
+<p>
+	2、主播2在B频道开播，主播1、2跨频道连麦</p>
+<p>
+	3、设置<span style="color:#ff0000;">主播1上行丢包率15%，下行丢包率15%</span>，主播端开播<span style="color:#ff0000;">10分钟以上</span></p>
+<p>
+	&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1~3、主播1、2连麦流畅，不会出现卡死，闪退等现象</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite>
+<testcase internalid="3015211" name="4g网络下开播观看（android&amp;ios）">
+	<node_order><![CDATA[5]]></node_order>
+	<externalid><![CDATA[823]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1.移动/联通/电信<span style="color:#ff0000;">4g网络下开播</span></p>
+<p>
+	2.移动/联通/电信<span style="color:#ff0000;">4g网络下观看</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<ol>
+	<li>
+		正常开播，观众观看正常，音视频正常</li>
+	<li>
+		正常观看，音视频正常，无花屏黑屏现象</li>
+</ol>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015214" name="ipv6网络下开播观看（iOS）">
+	<node_order><![CDATA[6]]></node_order>
+	<externalid><![CDATA[824]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	9.X以上系统支持在ipv6网络下使用</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	连接ipv6网络</p>
+<p>
+	&nbsp;</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	1.ipv6网络下<span style="color:#ff0000;">开播</span></p>
+<p>
+	2.ipv6网络下<span style="color:#ff0000;">观看</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<ol>
+	<li>
+		正常开播，观众观看正常，音视频正常</li>
+	<li>
+		正常观看，音视频正常，无花屏黑屏现象</li>
+</ol>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+<testsuite name="tcp断接" >
+<node_order><![CDATA[7]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015218" name="主播音视频开播，设置丢包率大于40%">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[825]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	1、当客户端与服务器tcp链接异常中断，不会导致媒体UDP通道的中断；（媒体UDP受弱网影响的质量问题不在此范围）</div>
+<div>
+	2、当客户端与服务器tcp链接异常中断，仍能通过UDP链路保序发送信令消息；</div>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	主播开播音视频，观众进频道订阅视频</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播正常开播，观众进频道可以正常观看视频，音视频同步</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	主播端设置<span style="color:#ff0000;">上下行</span>丢包50%</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	观众端还能听到主播说话的声音，能看到主播的视频</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="color:#ff0000;">恢复</span>主播端网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	观众端观看音视频同步</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015223" name="音视频连麦，设置丢包率大于40%">
+	<node_order><![CDATA[101]]></node_order>
+	<externalid><![CDATA[826]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	1、当客户端与服务器tcp链接异常中断，不会导致媒体UDP通道的中断；（媒体UDP受弱网影响的质量问题不在此范围）</div>
+<div>
+	2、当客户端与服务器tcp链接异常中断，仍能通过UDP链路保序发送信令消息；</div>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	主播1音视频开播，主播2音视频开播，主播1和主播2同频道连麦，观众进频道观看（订阅主播1的视频）</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	可以正常连麦，主播1和主播2能看到彼此的视频，听到彼此的声音，观众端可以正常观看</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	主播1端设置<span style="color:#ff0000;">上下行</span>丢包50%</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播1和主播2还能通话，可以看到彼此的视频，观众可以听到主播1的声音，能看到主播1的视频</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	恢复主播1网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播1和主播2能互相通话，音视频正常</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015228" name="纯音频开播，设置丢包率大于40%">
+	<node_order><![CDATA[102]]></node_order>
+	<externalid><![CDATA[827]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	1、当客户端与服务器tcp链接异常中断，不会导致媒体UDP通道的中断；（媒体UDP受弱网影响的质量问题不在此范围）</div>
+<div>
+	2、当客户端与服务器tcp链接异常中断，仍能通过UDP链路保序发送信令消息；</div>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	主播音频开播，观众进频道收听音频</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	观众端可以正常收听音频，</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	主播端设置<span style="color:#ff0000;">上下行</span><span style="color:#000000;">丢包50%</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	观众端依旧可以正常听到主播说话的声音</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	主播端恢复网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	观众端可以正常收听音频</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015233" name="音频连麦，设置丢包率大于40%">
+	<node_order><![CDATA[103]]></node_order>
+	<externalid><![CDATA[828]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	1、当客户端与服务器tcp链接异常中断，不会导致媒体UDP通道的中断；（媒体UDP受弱网影响的质量问题不在此范围）</div>
+<div>
+	2、当客户端与服务器tcp链接异常中断，仍能通过UDP链路保序发送信令消息；</div>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	主播1音频进频道a开播，主播2进频道a音频开播，主播1和主播2通话</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播1和主播可以正常通话</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	主播1设置<span style="color:#ff0000;">上下行</span>丢包50%</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播1和主播2语音通话依旧连接，可以正常通话</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	主播1恢复网络</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	主播1和主播2可以正常通话</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="网络质量回调" >
+<node_order><![CDATA[8]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite name="android&amp;ios" >
+<node_order><![CDATA[104]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015240" name="网络状态通知onNetworkQuality-直播上行">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[829]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	看上行网络质量时，损伤主播，然后看观众的感官和观众回调的主播的网络质量（txQuality）是否匹配</div>
+<p>
+	看下行网络质量时，损伤观众，然后看观众的感官和观众回调的自己的网络质量（rxQuality）是否匹配</p>
+<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">uid in</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200410</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200411</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200412</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200413</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200414</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200415</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200416</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200417</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A开播（主播打开网络质量回调），观众BC进频道订阅视频&quot;}" style="font-size: 12pt;">主播A开播（主播打开网络质量回调），观众BC进频道订阅视频</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：200ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">200ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频流畅不卡顿，主播回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B、C端画面音频流畅不卡顿，主播回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">300ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频流畅不卡顿，主播回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B、C端画面音频流畅不卡顿，主播回调自身<span style="color:#ff0000;">QUALITY_GOOD(2)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：200ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">400ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面可能音频稍微有点卡顿，画面出现模糊，主播回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B、C端画面及音频可能稍微卡顿，延时稍大，主播回调自身<span style="color:#ff0000;">QUALITY_POOR(3)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：500ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">500ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面及音频卡顿，画面较模糊，延时较大，主播回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B、C端画面及音频可能稍微卡顿，延时较大，主播回调自身<span style="color:#ff0000;">QUALITY_BAD(4)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：700ms延时+50%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">700ms延时+50%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频非常卡顿，画面模糊，延时大，主播回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B、C端画面音频可能稍微卡顿，延时很大，主播回调自身<span style="color:#ff0000;">QUALITY_VBAD(5)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p>
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p>
+	2.断网后马上<span style="color:#ff0000;">重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1.观众B、C端看到主播画面停留在最后一帧，听不到主播声音，主播回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p>
+	<span style="font-size: 16px;">2.观众B、C端看到主播音视频恢复，</span>主播回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p>
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p>
+	2.断网1分钟后再<span style="color:#ff0000;">重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	1.观众B、C端看到主播画面停留在最后一帧，听不到主播声音，主播回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p>
+	<span style="font-size: 16px;">2.观众B、C端看到主播音视频恢复，</span>主播回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015250" name="网络状态通知onNetworkQuality-直播下行">
+	<node_order><![CDATA[101]]></node_order>
+	<externalid><![CDATA[830]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	目前还不支持观众弱网自动切换低码率流，因此观众下行损伤不会导致画面模糊</p>
+<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">uid in</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200410</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200411</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200412</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200413</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200414</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200415</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200416</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200417</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A开播，观众BC（主播打开网络质量回调）进频道订阅视频&quot;}" style="font-size: 12pt;">主播A开播，观众BC（主播打开网络质量回调）进频道订阅视频</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15171,&quot;3&quot;:{&quot;1&quot;:0},&quot;4&quot;:[null,2,16777215],&quot;9&quot;:0,&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：<span style="color:#ff0000;">300ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，观众B回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：400ms延时+40%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：<span style="color:#ff0000;">400ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时稍大，画面音频流畅不卡顿，观众B回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端延时稍大，画面音频流畅不卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_GOOD(2)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：600ms延时+30%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：<span style="color:#ff0000;">600ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时较大，可能偶尔出现卡顿，观众B回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端延时较大，可能偶尔出现卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_POOR(3)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：700ms延时+40%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：<span style="color:#ff0000;">700ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时程度较步骤4严重，可能伴随音视频卡顿，观众B回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端延时程度较步骤4严重，可能伴随音视频卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_BAD(4)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：800ms延时+50%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：<span style="color:#ff0000;">800ms延时+50%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时很大，可能伴随音视频卡顿，观众B回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端延时很大，可能伴随音视频卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_VBAD(5)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.观众B用户<span style="color:#ff0000;">断网</span></p>
+<p>
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	2.断网后马上<span style="color:#ff0000;">重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播画面停留在最后一帧，听不到主播声音，观众B回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播音视频恢复，观众B</span>回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.观众B用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网<span style="color:#ff0000;">1分钟后再重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播画面停留在最后一帧，听不到主播声音，观众B回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p>
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播音视频恢复，观众B</span>回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015260" name="网络状态通知onNetworkQuality-连麦上行">
+	<node_order><![CDATA[102]]></node_order>
+	<externalid><![CDATA[831]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">uid in</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200410</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200411</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200412</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200413</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200414</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200415</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200416</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200417</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播AB开播（主播打开网络质量回调），同频道连麦&quot;}" style="font-size: 12pt;">主播AB开播（主播打开网络质量回调），同频道连麦</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：0ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：<span style="color:#ff0000;">0ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，主播回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，主播回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：100ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：<span style="color:#ff0000;">100ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，主播回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，延时稍大，主播回调自身<span style="color:#ff0000;">QUALITY_GOOD(2)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：<span style="color:#ff0000;">200ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面可能音频稍微有点卡顿，画面模糊或延时，主播回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端画面及音频可能稍微有点卡顿，延时稍大，主播回调自身<span style="color:#ff0000;">QUALITY_POOR(3)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：<span style="color:#ff0000;">300ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面及音频卡顿，画面模糊延时程度较步骤4严重，主播回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端画面及音频卡顿，延时较大，主播回调自身<span style="color:#ff0000;">QUALITY_BAD(4)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：<span style="color:#ff0000;">300ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频非常卡顿，画面模糊，延时大，主播回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端画面音频非常卡顿，延时大，主播回调自身<span style="color:#ff0000;">QUALITY_VBAD(5)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网<span style="color:#ff0000;">1分钟后再重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播A画面停留在最后一帧，听不到主播A声音，主播A回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，</span>主播A回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网后<span style="color:#ff0000;">马上重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播A画面停留在最后一帧，听不到A主播声音，主播A回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，</span>主播A回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015270" name="网络状态通知onNetworkQuality-连麦下行">
+	<node_order><![CDATA[103]]></node_order>
+	<externalid><![CDATA[832]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<p>
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">uid in</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200410</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200411</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200412</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200413</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200414</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200415</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200416</span><br style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);" />
+	<span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 14px; background-color: rgb(240, 240, 240);">20200417</span></p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播AB开播（主播打开网络质量回调），同频道连麦&quot;}" style="font-size: 12pt;">主播AB开播（主播打开网络质量回调），同频道连麦</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：0ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：<span style="color:#ff0000;">0ms延时+10%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，观众B回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：200ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：<span style="color:#ff0000;">200ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅偶尔卡顿，观众B回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，延时稍大，观众B回调自身<span style="color:#ff0000;">QUALITY_GOOD(2)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：<span style="color:#ff0000;">400ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面可能音频有点卡顿，延时较大，观众B回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端画面音频可能有点卡顿，延时较大，观众B回调自身<span style="color:#ff0000;">QUALITY_POOR(3)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：300ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：<span style="color:#ff0000;">400ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面及音频卡顿，画面模糊延时程度较步骤4严重，观众B回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端画面及音频卡顿，延时较大，观众B回调自身<span style="color:#ff0000;">QUALITY_BAD(4)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：400ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：<span style="color:#ff0000;">500ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频非常卡顿，画面模糊，延时大，观众B回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端画面音频非常卡顿，延时较大，观众B回调自身<span style="color:#ff0000;">QUALITY_VBAD(5)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播B用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	2.断网后<span style="color:#ff0000;">马上重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播<span style="font-size: 16px;">A</span>画面停留在最后一帧，听不到主播<span style="font-size: 16px;">A</span>声音，观众B回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，观众B</span>回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播B用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网<span style="color:#ff0000;">1分钟后再重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.主播B端看到主播<span style="font-size: 16px;">A</span>画面停留在最后一帧，听不到主播<span style="font-size: 16px;">A</span>声音，B回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播</span><span style="font-size: 16px;">A</span><span style="font-size: 16px;">音视频恢复，观众B</span>回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite name="pc" >
+<node_order><![CDATA[105]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3015281" name="网络状态通知onNetworkQuality-直播上行">
+	<node_order><![CDATA[100]]></node_order>
+	<externalid><![CDATA[833]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<div>
+	看上行网络质量时，损伤主播，然后看观众的感官和观众回调的主播的网络质量（txQuality）是否匹配</div>
+<p>
+	看下行网络质量时，损伤观众，然后看观众的感官和观众回调的自己的网络质量（rxQuality）是否匹配</p>
+<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<div>
+	视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</div>
+<div>
+	uid in</div>
+<div>
+	20200410</div>
+<div>
+	20200411</div>
+<div>
+	20200412</div>
+<div>
+	20200413</div>
+<div>
+	20200414</div>
+<div>
+	20200415</div>
+<div>
+	20200416</div>
+<div>
+	20200417</div>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A开播（主播打开网络质量回调），观众BC进频道订阅视频&quot;}" style="font-size: 12pt;">主播A开播（主播打开网络质量回调），观众BC进频道订阅视频</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：200ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">200ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频流畅不卡顿，主播回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B、C端画面音频流畅不卡顿，主播回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">300ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频流畅不卡顿，主播回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B、C端画面音频流畅不卡顿，主播回调自身<span style="color:#ff0000;">QUALITY_GOOD(2)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：200ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">400ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面可能音频稍微有点卡顿，画面出现模糊，主播回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B、C端画面及音频可能稍微卡顿，延时稍大，主播回调自身<span style="color:#ff0000;">QUALITY_POOR(3)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置直播上行：500ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">400ms延时+40%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面及音频卡顿，画面较模糊，延时较大，主播回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B、C端画面及音频偶尔卡顿，卡顿时卡住比较久，延时较大，主播回调自身<span style="color:#ff0000;">QUALITY_BAD(4)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<span style="font-size: 16px;">主播A用户network emulator或损伤仪模拟网络设置直播上行：<span style="color:#ff0000;">500ms延时+40%丢包</span></span></p>
+<p>
+	<span style="color:#000000;"><span style="font-size: 16px;">备注：数值不对应时，可以增加</span>50gjizeng-100ms的延时，或者5%的丢包，electron测试时设置丢包5%可回调数值为5</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B、C端画面音频非常卡顿，画面模糊，延时大，主播回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B、C端画面音频偶尔卡顿，卡顿时卡住比较久，延时很大，主播回调自身<span style="color:#ff0000;">QUALITY_VBAD(5)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网后<span style="color:#ff0000;">马上重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B、C端看到主播画面停留在最后一帧，听不到主播声音，主播回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B、C端看到主播音视频恢复，</span>主播回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户<span style="color:#ff0000;">断网</span></p>
+<p style="font-family: Simsun;">
+	2.断网<span style="color:#ff0000;">1分钟后再重连</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B、C端看到主播画面停留在最后一帧，听不到主播声音，主播回调自身<span style="color:#ff0000;"><span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B、C端看到主播音视频恢复，</span>主播回调自身<span style="color:#ff0000;">不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015291" name="网络状态通知onNetworkQuality-直播下行">
+	<node_order><![CDATA[101]]></node_order>
+	<externalid><![CDATA[834]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	目前还不支持观众弱网自动切换低码率流，因此观众下行损伤不会导致画面模糊</p>
+<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<div>
+	视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</div>
+<div>
+	uid in</div>
+<div>
+	20200410</div>
+<div>
+	20200411</div>
+<div>
+	20200412</div>
+<div>
+	20200413</div>
+<div>
+	20200414</div>
+<div>
+	20200415</div>
+<div>
+	20200416</div>
+<div>
+	20200417</div>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A开播，观众BC（主播打开网络质量回调）进频道订阅视频&quot;}" style="font-size: 12pt;">主播A开播，观众BC（主播观众打开网络质量回调）进频道订阅视频</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15171,&quot;3&quot;:{&quot;1&quot;:0},&quot;4&quot;:[null,2,16777215],&quot;9&quot;:0,&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众<span style="color:#ff0000;">下行：300ms延时+30%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，观众B回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，观众B回调自身<span style="color:#ff0000;">QUALITY_EXCELLENT(1)</span></span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：400ms延时+40%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：400ms延时+40%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时稍大，画面音频流畅不卡顿，观众B回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端延时稍大，画面音频流畅不卡顿，观众B回调自身QUALITY_GOOD(2)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：600ms延时+30%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：600ms延时+30%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时较大，可能偶尔出现卡顿，观众B回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端延时较大，偶尔伴随音视频卡顿，卡顿时卡住比较久，观众B回调自身QUALITY_POOR(3)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：700ms延时+40%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：800ms延时+40%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时程度较步骤4严重，可能伴随音视频卡顿，观众B回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端延时程度较步骤4严重，偶尔伴随音视频卡顿，卡顿时卡住比较久，观众B回调自身QUALITY_BAD(4)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B用户network emulator或损伤仪模拟网络设置观众下行：800ms延时+50%丢包&quot;}" style="font-size: 12pt;">观众B用户network emulator或损伤仪模拟网络设置观众下行：800ms延时+50%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端延时很大，可能伴随音视频卡顿，观众B回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端延时很大，偶尔伴随音视频卡顿，卡顿时卡住比较久，观众B回调自身QUALITY_VBAD(5)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.观众B用户断网</p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	2.断网后马上重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播画面停留在最后一帧，听不到主播声音，观众B回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播音视频恢复，观众B</span>回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.观众B用户断网</p>
+<p style="font-family: Simsun;">
+	2.断网1分钟后再重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播画面停留在最后一帧，听不到主播声音，观众B回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播音视频恢复，观众B</span>回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015301" name="网络状态通知onNetworkQuality-连麦上行">
+	<node_order><![CDATA[102]]></node_order>
+	<externalid><![CDATA[835]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[]]></summary>
+	<preconditions><![CDATA[<div>
+	视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</div>
+<div>
+	uid in</div>
+<div>
+	20200410</div>
+<div>
+	20200411</div>
+<div>
+	20200412</div>
+<div>
+	20200413</div>
+<div>
+	20200414</div>
+<div>
+	20200415</div>
+<div>
+	20200416</div>
+<div>
+	20200417</div>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播AB开播（主播打开网络质量回调），同频道连麦&quot;}" style="font-size: 12pt;">主播AB开播（主播打开网络质量回调），<span style="color:#ff0000;">同频道连麦</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。主播A每隔5s回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。<span style="color:#ff0000;">主播A每隔5s回调自己的网络状态</span>（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：0ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦<span style="color:#ff0000;">上行：0ms延时+20%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，主播回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，主播回调自身QUALITY_EXCELLENT(1)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：100ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：100ms延时+20%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，主播回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，延时稍大，主播回调自身QUALITY_GOOD(2)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+20%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面可能音频稍微有点卡顿，画面模糊或延时，主播回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端画面及音频可能稍微有点卡顿，延时稍大，主播回调自身QUALITY_POOR(3)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：300ms延时+15%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面及音频卡顿，画面模糊延时程度较步骤4严重，主播回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端画面及音频卡顿，延时较大，主播回调自身QUALITY_BAD(4)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播A用户network emulator或损伤仪模拟网络设置连麦上行：200ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播A用户network emulator或损伤仪模拟网络设置连麦上行：300ms延时+25%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频非常卡顿，画面模糊，延时大，主播回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端画面音频非常卡顿，延时大，主播回调自身QUALITY_VBAD(5)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户断网</p>
+<p>
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	2.断网1分钟后再重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播A画面停留在最后一帧，听不到主播A声音，主播A回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，</span>主播A回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播A用户断网</p>
+<p style="font-family: Simsun;">
+	2.断网后马上重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播A画面停留在最后一帧，听不到A主播声音，主播A回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，</span>主播A回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3015311" name="网络状态通知onNetworkQuality-连麦下行">
+	<node_order><![CDATA[103]]></node_order>
+	<externalid><![CDATA[836]]></externalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>
+	观众超过10s没有收到主播的网络回调，会回调一次unknown，覆盖业务保存的上一次过时的主播网络质量，避免误导用户。之后除非再次收到主播的网络质量广播，否则不会再回调；</p>
+]]></summary>
+	<preconditions><![CDATA[<div>
+	视频上行fec打开导致同样的损伤条件，网络质量回调会变好；配置uid关闭视频fec验证</div>
+<div>
+	uid in</div>
+<div>
+	20200410</div>
+<div>
+	20200411</div>
+<div>
+	20200412</div>
+<div>
+	20200413</div>
+<div>
+	20200414</div>
+<div>
+	20200415</div>
+<div>
+	20200416</div>
+<div>
+	20200417</div>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播AB开播（主播打开网络质量回调），同频道连麦&quot;}" style="font-size: 12pt;">主播AB开播（主播打开网络质量回调），<span style="color:#ff0000;">同频道连麦</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众可以正常观看，音视频同步。B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）&quot;}" style="font-size: 12pt;">观众可以正常观看，音视频同步。<span style="color:#ff0000;">B、C每隔5s会收到主播端A网络状态回调onNetworkQuality，并回调自己的网络状态</span>（有媒体传输的方向[即主播的上行，观众的下行]不会为UNKNOWN）</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：0ms延时+10%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦<span style="color:#ff0000;">下行：0ms延时+10%丢包</span></span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅不卡顿，观众B回调自身QUALITY_EXCELLENT(1)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，观众B回调自身QUALITY_EXCELLENT(1)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：200ms延时+20%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：100ms延时+10%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频流畅偶尔卡顿，观众B回调自身QUALITY_GOOD(2)&quot;}" style="font-size: 12pt;">观众B端画面音频流畅不卡顿，延时稍大，观众B回调自身QUALITY_GOOD(2)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：300ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：100ms延时+20%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面可能音频有点卡顿，延时较大，观众B回调自身QUALITY_POOR(3)&quot;}" style="font-size: 12pt;">观众B端画面音频可能有点卡顿，延时较大，观众B回调自身QUALITY_POOR(3)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：300ms延时+40%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：200ms延时+25%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面及音频卡顿，画面模糊延时程度较步骤4严重，观众B回调自身QUALITY_BAD(4)&quot;}" style="font-size: 12pt;">观众B端画面及音频卡顿，延时较大，观众B回调自身QUALITY_BAD(4)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[6]]></step_number>
+	<actions><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;主播B用户network emulator或损伤仪模拟网络设置连麦下行：400ms延时+30%丢包&quot;}" style="font-size: 12pt;">主播B用户network emulator或损伤仪模拟网络设置连麦下行：300ms延时+30%丢包</span></p>
+]]></actions>
+	<expectedresults><![CDATA[<p>
+	<style type="text/css">
+<!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->	</style>
+	<span data-sheets-userformat="{&quot;2&quot;:15165,&quot;3&quot;:{&quot;1&quot;:0},&quot;5&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;7&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:[null,2,0]},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:[null,2,0],&quot;15&quot;:&quot;\&quot;Microsoft YaHei\&quot;&quot;,&quot;16&quot;:12}" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;观众B端画面音频非常卡顿，画面模糊，延时大，观众B回调自身QUALITY_VBAD(5)&quot;}" style="font-size: 12pt;">观众B端画面音频非常卡顿，延时较大，观众B回调自身QUALITY_VBAD(5)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[7]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播B用户断网</p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p>
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	2.断网后马上重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.观众B端看到主播<span style="font-size: 16px;">A</span>画面停留在最后一帧，听不到主播<span style="font-size: 16px;">A</span>声音，观众B回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播A音视频恢复，观众B</span>回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[8]]></step_number>
+	<actions><![CDATA[<p style="font-family: Simsun;">
+	1.主播B用户断网</p>
+<p style="font-family: Simsun;">
+	2.断网1分钟后再重连</p>
+]]></actions>
+	<expectedresults><![CDATA[<p style="font-family: Simsun;">
+	1.主播B端看到主播<span style="font-size: 16px;">A</span>画面停留在最后一帧，听不到主播<span style="font-size: 16px;">A</span>声音，B回调自身<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+<p style="font-family: Simsun;">
+	&nbsp;</p>
+<p style="font-family: Simsun;">
+	<span style="font-size: 16px;">2.观众B端看到主播</span><span style="font-size: 16px;">A</span><span style="font-size: 16px;">音视频恢复，观众B</span>回调自身不为<span style="font-size: 16px;">QUALITY_UKNOWN(6)</span></p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite></testsuite></testsuite>
