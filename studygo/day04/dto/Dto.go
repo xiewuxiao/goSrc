@@ -14,6 +14,7 @@ type Testsuite struct {
 	Details        string      `xml:"details"`
 	Testcases      []Testcase  `xml:"testcase"`
 	Name           string      `xml:"name,attr"`
+	Internalid     string      `xml:"internalid,attr"`
 	TestsuiteThird []Testsuite `xml:"testsuite"`
 }
 

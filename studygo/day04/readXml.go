@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -9,9 +10,17 @@ import (
 	"strconv"
 	"strings"
 
-	"com.todaytech.ben/studygo/day04/dto"
+	// "com.todaytech.ben/studygo1/day04/dto"
+
+	"studygo/day04/dto"
+
 	"github.com/360EntSecGroup-Skylar/excelize"
 )
+
+const FIRST_TITLE_FORMAT = "# "
+const SECOND_TITLE_FORMAT = "## "
+const THIRD_TITLE_FORMAT = "### "
+const FOUTH_TITLE_FORMAT = "#### "
 
 func main() {
 	xmlFold := "./要处理的"
@@ -34,12 +43,67 @@ func main() {
 			secondTestSuite.Testcases = append(secondTestSuite.Testcases, first.Testcases...)
 			first.TestsuiteSecond = append(first.TestsuiteSecond, *secondTestSuite)
 		}
-		exportToExcel(first.TestsuiteSecond, outFold, file.Name())
+		//生成excel
+		// exportToExcel(first.TestsuiteSecond, outFold, file.Name())
+		//生成md文件
+		exportMarkDownFile(first.TestsuiteSecond, outFold, file.Name())
 	}
 
-	//生成excel
-
 }
+func exportMarkDownFile(testsuiteSecond []dto.Testsuite, outFold string, fileName string) {
+	genFileName := outFold + string(os.PathSeparator) + strings.Split(fileName, ".")[0] + ".md"
+	markDownFile, err := os.Create(genFileName)
+	if err != nil {
+		fmt.Printf("create map file error: %v\n", err)
+		return
+	}
+	defer markDownFile.Close()
+	w := bufio.NewWriter(markDownFile)
+	for i := 0; i < len(testsuiteSecond); i++ {
+		//每一个testsuite就是一个一级标题
+		testsuite := testsuiteSecond[i]
+		// sheetName := FIRST_TITLE_FORMAT + testsuite.Internalid
+		//用例标题
+		firstTitleName := FIRST_TITLE_FORMAT + testsuite.Name
+		//写入一级标题
+		fmt.Fprintln(w, firstTitleName)
+
+		if len(testsuite.TestsuiteThird) > 0 {
+			// fmt.Print("执行前长度\t")
+			// fmt.Println(len(testsuiteSecond))
+			testsuiteSecond = append(testsuiteSecond, testsuite.TestsuiteThird...)
+			// fmt.Print("执行后长度\t")
+			// fmt.Println(len(testsuiteSecond))
+			//对于这种不规则的，只对子树进行循环
+
+		}
+		if len(testsuite.Testcases) == 0 {
+			continue
+		}
+
+		for _, testcase := range testsuite.Testcases {
+			//二级标题 用例名称
+			fmt.Fprintln(w, SECOND_TITLE_FORMAT+"用例标题：")
+			fmt.Fprintln(w, regReplaceAll(testcase.Name))
+
+			fmt.Fprintln(w, THIRD_TITLE_FORMAT+"摘要：")
+			fmt.Fprintln(w, regReplaceAll(testcase.Summary))
+			fmt.Fprintln(w, THIRD_TITLE_FORMAT+"前提：")
+			fmt.Fprintln(w, regReplaceAll(testcase.Preconditions))
+			for _, step := range testcase.Steps.Step {
+				fmt.Fprintln(w, FOUTH_TITLE_FORMAT+"测试步骤：")
+				fmt.Fprintln(w, regReplaceAll(step.StepNumber)+regReplaceAll(step.Action))
+				fmt.Fprintln(w, FOUTH_TITLE_FORMAT+"期望结果：")
+				fmt.Fprintln(w, regReplaceAll(step.Expectedresults))
+			}
+
+		}
+
+	}
+	w.Flush()
+	fmt.Println(markDownFile.Name())
+}
+
 func exportToExcel(testsuiteSecond []dto.Testsuite, outFold string, fileName string) {
 
 	f := excelize.NewFile()
@@ -136,7 +200,7 @@ func regReplaceAll(old string) string {
 	// reStr1 := reg1.ReplaceAllString(reStr,"\r\n")
 	// reStr1 = strings.ReplaceAll(reStr1,"\n",``)
 	// reStr2 := strings.ReplaceAll(reStr1, "\r\n", ``)
-	fmt.Print(reStr)
+	//fmt.Print(reStr)
 
 	// reStr2 :=strings.ReplaceAll(reStr1,"",``)
 	// fmt.Println(string(reStr2))
